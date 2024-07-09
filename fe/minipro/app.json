@@ -2,7 +2,8 @@
   "pages": [
     "pages/index/index",
     "pages/logs/logs",
-    "pages/chat/chat"
+    "pages/chat/chat",
+    "pages/fun1/fun1"
   ],
   "window": {
     "navigationBarTextStyle": "black",
