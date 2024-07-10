@@ -3,7 +3,7 @@
 <view class="header">
   <text>实景识别</text>
 </view>
-<view class="ai-response">
+<view class="ai-response" bindtouchstart="touchStart" bindtouchmove="touchMove" bindtouchend="touchEnd">
   <text>{{aiResponse}}</text>
 </view>
 <view class="voice-input">
