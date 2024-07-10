@@ -1,0 +1,15 @@
+<!--pages/fun1/fun1.wxml-->
+
+<view class="header">
+  <text>实景识别</text>
+</view>
+<view class="ai-response" bindtouchstart="touchStart" bindtouchmove="touchMove" bindtouchend="touchEnd">
+  <text>{{aiResponse}}</text>
+</view>
+<view class="voice-input">
+  <textarea class="weui-textarea" placeholder="输入您的问题" bindinput="onInputChange" maxlength="200" ></textarea>
+</view>
+<view class="buttons">
+  <button type="primary" class="button1" bindtap="button1">拍照并提交</button>
+  <button type="default" class="button2" bindtap="button2">详细询问</button>
+</view>
