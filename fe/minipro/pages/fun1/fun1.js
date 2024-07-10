@@ -9,10 +9,12 @@ Page({
   data: {
     aiResponse: '提交后，此处将显示AI回复',
     voiceInput: '',
+    loginCode:''
   },
 
   // Function to handle "拍照" button click
   button1: function () {
+    
     const that = this;
     wx.chooseMedia({
       count: 1, //只能选择一张
@@ -21,11 +23,12 @@ Page({
         that.setData({
           aiResponse: "思考中......请等候约5秒"
         });
+        console.log(this.data.loginCode)
         wx.request({
           url: 'http://10.9.176.40:8123',//? unknown
           method: 'POST',
           data: {
-            userid: 'yourUserIdHere',
+            logincode: this.data.loginCode,
             newtalk: true, // 或者 false，根据实际情况设置
             kind: '1',
             picture: 'base64编码的图片数据', // 如果是base64编码的图片数据，可以直接传字符串
@@ -44,7 +47,7 @@ Page({
           fail: (error) => {
             console.error('请求失败', error); // 请求失败时的处理逻辑
             that.setData({
-              aiResponse: "网络连接异常"
+              aiResponse: "网络连接异常"+this.data.loginCode
             });
           }
         });
@@ -122,7 +125,17 @@ console.log('详情')
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady() {},
+  onReady() {
+    wx.login({
+      //成功放回
+      success:(res)=>{
+        console.log(res);
+        this.setData({
+          loginCode: res.code
+        });
+      }
+    })
+  },
 
   /**
    * 生命周期函数--监听页面显示
