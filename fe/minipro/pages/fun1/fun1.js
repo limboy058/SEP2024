@@ -1,10 +1,14 @@
+// 用来处理滑动逻辑的变量
+var startX, endX; //首先创建2个变量 来记录触摸时的原点
+var moveFlag = true;// 判断执行滑动事件
+
 Page({
   /**
    * 页面的初始数据
    */
   data: {
     aiResponse: '提交后，此处将显示AI回复',
-    voiceInput: ''
+    voiceInput: '',
   },
 
   // Function to handle "拍照" button click
@@ -59,12 +63,55 @@ Page({
     wx.navigateTo({
       url: '/pages/chat/chat'  // 指定目标页面路径
     });
+
+
   },
 
+  // 下面三个函数是实现在AI对话框中捕捉滑动的逻辑
   onInputChange: function (e) {
     this.setData({
       voiceInput: e.detail.value
     });
+  },
+  touchStart: function (e) {
+    startX = e.touches[0].pageX; // 获取触摸时的原点
+    moveFlag = true;
+  },
+  // 触摸移动事件
+  touchMove: function (e) {
+    endX = e.touches[0].pageX; // 获取触摸时的原点
+    if (moveFlag) {
+      if (endX - startX > 50) {
+        this.move2right();
+        moveFlag = false;
+      }
+      if (startX - endX > 50) {
+        this.move2left();
+        moveFlag = false;
+      }
+    }
+  },
+  // 触摸结束事件
+  touchEnd: function (e) {
+    moveFlag = true; // 回复滑动事件
+  },
+  clicktab1:function(e){
+    this.move2right();
+   this.setData({
+     currentab:0
+   })
+console.log('详情')
+  },
+
+
+  // 将AI框体中滑动所产生的逻辑写到这里
+  move2left() {
+    console.log("move to left");
+  },
+
+    // 将AI框体中滑动所产生的逻辑写到这里
+  move2right() {
+    console.log("move to right");
   },
 
   /**
