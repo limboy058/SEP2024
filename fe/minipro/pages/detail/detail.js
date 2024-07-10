@@ -2,9 +2,9 @@
 Page({
   data: {
     // 可以在这里定义需要的数据
-    questions: [
-     
-    ],
+    questions: [{ id: 1, answer: "这是 AI 回答1", image: "https://via.placeholder.com/150" },
+    { id: 2, answer: "这是 AI 回答2", image: "https://via.placeholder.com/150" },
+    { id: 3, answer: "这是 AI 回答3", image: "https://via.placeholder.com/150" }],
     questionInput: ''
   },
   onLoad: function () {
@@ -21,6 +21,9 @@ Page({
       },
       fail: (err) => {
         console.error('Failed to fetch data:', err);
+        this.setData({
+          questions: [this.data.questions, {id: 0, answer: "网络错误",image:""}]
+        });
       }
     });
   },
@@ -60,7 +63,7 @@ Page({
           success: (res) => {
             console.log(res.data); // 请求成功后的处理逻辑
             that.setData({
-              aiResponse: res.data
+              aiResponse: "网络连接异常"+res.data
             });
           },
           
@@ -82,6 +85,7 @@ Page({
   },
   onSend: function () {
     // 发送逻辑
+    const that = this;
     const question = this.data.questionInput;
     wx.request({
       url: 'https://your-api-url.com/questions', // 替换为你的后端接口地址
@@ -97,7 +101,23 @@ Page({
       },
       fail: (err) => {
         console.error('Failed to send question:', err);
+        this.setData({
+          aiResponse: "思考中......请等候约5秒"
+        });
       }
+    });
+    
+    let tempArray=[];
+    
+    this.data.questions.forEach((question, index) => {
+      console.log(`问题 ${index + 1}:`, question);
+      tempArray = tempArray.push({id:index+1,question});
+    });
+    tempArray.push({ id: 4, answer: "这是 AI 回答4", image: "https://via.placeholder.com/150" });
+    let newQuestions = { id: 4, answer: "这是 AI 回答4", image: "https://via.placeholder.com/150" };
+    
+    this.setData({
+      questions: tempArray
     });
   }
 });

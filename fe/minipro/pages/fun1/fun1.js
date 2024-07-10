@@ -64,7 +64,7 @@ Page({
   // Function to handle "详细询问" button click
   button2: function () {
     wx.navigateTo({
-      url: '/pages/chat/chat'  // 指定目标页面路径
+      url: '/pages/detail/detail'  // 指定目标页面路径
     });
 
 
