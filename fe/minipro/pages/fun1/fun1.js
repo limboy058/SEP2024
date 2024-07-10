@@ -9,7 +9,7 @@ Page({
   data: {
     aiResponse: '提交后，此处将显示AI回复',
     voiceInput: '',
-    loginCode:''
+    loginCode:'null'
   },
 
   // Function to handle "拍照" button click
