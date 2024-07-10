@@ -3,9 +3,7 @@ Page({
   data: {
     // 可以在这里定义需要的数据
     questions: [
-      { id: 1, answer: "这是 AI 回答1", image: "https://via.placeholder.com/150" },
-      { id: 2, answer: "这是 AI 回答2", image: "https://via.placeholder.com/150" },
-      { id: 2, answer: "这是 AI 回答2", image: "https://via.placeholder.com/150" }
+     
     ],
     questionInput: ''
   },
@@ -37,6 +35,50 @@ Page({
   },
   onTakePhoto: function () {
     // 拍照逻辑
+    const that = this;
+    wx.chooseMedia({
+      count: 1, //只能选择一张
+      success: (res) => {
+        const tempFilePaths = res.tempFilePaths;
+        that.setData({
+          aiResponse: "思考中......请等候约5秒"
+        });
+        console.log(this.data.loginCode)
+        wx.request({
+          url: 'http://10.9.176.40:8123',//? unknown
+          method: 'POST',
+          data: {
+            logincode: this.data.loginCode,
+            newtalk: true, // 或者 false，根据实际情况设置
+            kind: '1',
+            picture: 'base64编码的图片数据', // 如果是base64编码的图片数据，可以直接传字符串
+            question: 'yourQuestionHere'
+          },
+          // header: {
+          //   'content-type': 'application/json' // 根据你的后端要求设置合适的content-type
+          // },
+          success: (res) => {
+            console.log(res.data); // 请求成功后的处理逻辑
+            that.setData({
+              aiResponse: res.data
+            });
+          },
+          
+          fail: (error) => {
+            console.error('请求失败', error); // 请求失败时的处理逻辑
+            that.setData({
+              aiResponse: "网络连接异常"+this.data.loginCode
+            });
+          }
+        });
+        // You can add more code here to handle the photo, e.g., upload to server, analyze, etc.
+      },
+      fail: () => {
+        that.setData({
+          aiResponse: '未上传图片'
+        });
+      }
+    });
   },
   onSend: function () {
     // 发送逻辑
