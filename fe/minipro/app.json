@@ -3,12 +3,10 @@
     "pages/fun1/fun1",
     "pages/index/index",
     "pages/logs/logs",
-    "pages/chat/chat",
     "pages/detail/detail"
   ],
   "window": {
     "navigationBarTextStyle": "black",
-    "navigationBarTitleText": "Weixin",
     "navigationBarBackgroundColor": "#ffffff"
   },
   "style": "v2",

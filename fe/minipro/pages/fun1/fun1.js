@@ -9,45 +9,54 @@ Page({
   data: {
     aiResponse: '提交后，此处将显示AI回复',
     voiceInput: '',
-    loginCode:'null'
+    fun_text:'实景识别',
+    fun_id:'1'
   },
 
   // Function to handle "拍照" button click
   button1: function () {
-    
+    const app = getApp()
+    console.log(app.globalData.loginCode)
     const that = this;
     wx.chooseMedia({
       count: 1, //只能选择一张
+      mediaType:['image'],
+      sizeType:['compressed'],
       success: (res) => {
-        const tempFilePaths = res.tempFilePaths;
+        const my_FilePath = res.tempFiles[0].tempFilePath;
         that.setData({
           aiResponse: "思考中......请等候约5秒"
         });
-        console.log(this.data.loginCode)
-        wx.request({
-          url: 'http://10.9.176.40:8123',//? unknown
-          method: 'POST',
-          data: {
-            logincode: this.data.loginCode,
-            newtalk: true, // 或者 false，根据实际情况设置
-            kind: '1',
-            picture: 'base64编码的图片数据', // 如果是base64编码的图片数据，可以直接传字符串
-            question: 'yourQuestionHere'
-          },
+        // console.log(app.globalData.loginCode);
+        wx.uploadFile({
+          url: 'https://8629896bylf7.vicp.fun/AITalk', //仅为示例，非真实的接口地址
+          //url: 'http://124.71.204.55/aitalk',
+          filePath: my_FilePath,
           // header: {
-          //   'content-type': 'application/json' // 根据你的后端要求设置合适的content-type
+          //   'content-type': 'application/json' // 默认值
+          //   // 'content-type': 'application/x-www-form-urlencoded;charset=utf-8'
           // },
+          name: 'photo',
+          
+          formData: {
+            loginCode: app.globalData.loginCode,
+            newTalk: '1', // 或者 false，根据实际情况设置
+            kind: this.data.fun_id,
+            question: this.data.voiceInput
+          },
           success: (res) => {
             console.log(res.data); // 请求成功后的处理逻辑
+  
             that.setData({
-              aiResponse: res.data
+              aiResponse: JSON.parse(res.data).response
+              // unescape(res.data.replace(/\\u/g, '%u'))+app.globalData.loginCode
             });
           },
           
           fail: (error) => {
             console.error('请求失败', error); // 请求失败时的处理逻辑
             that.setData({
-              aiResponse: "网络连接异常"+this.data.loginCode
+              aiResponse: "网络连接异常"+app.globalData.loginCode
             });
           }
         });
@@ -110,31 +119,67 @@ console.log('详情')
   // 将AI框体中滑动所产生的逻辑写到这里
   move2left() {
     console.log("move to left");
+    if (this.data.fun_id=='1')
+    {
+      this.setData({
+        fun_id:'2',
+        fun_text:'文字识别'
+      });
+    }
+    else if (this.data.fun_id=='2')
+    {
+      this.setData({
+        fun_id:'3',
+        fun_text:'人脸识别'
+      });
+    }
+    else if (this.data.fun_id=='3')
+    {
+      this.setData({
+        fun_id:'1',
+        fun_text:'实景识别'
+      });
+    }
+
   },
 
     // 将AI框体中滑动所产生的逻辑写到这里
   move2right() {
     console.log("move to right");
+    if (this.data.fun_id=='3')
+    {
+      this.setData({
+        fun_id:'2',
+        fun_text:'文字识别'
+      });
+    }
+    else if (this.data.fun_id=='1')
+    {
+      this.setData({
+        fun_id:'3',
+        fun_text:'人脸识别'
+      });
+    }
+    else if (this.data.fun_id=='2')
+    {
+      this.setData({
+        fun_id:'1',
+        fun_text:'实景识别'
+      });
+    }
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad(options) {},
+  onLoad(options) {
+  },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady() {
-    wx.login({
-      //成功放回
-      success:(res)=>{
-        console.log(res);
-        this.setData({
-          loginCode: res.code
-        });
-      }
-    })
+    
   },
 
   /**
