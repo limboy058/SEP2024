@@ -8,17 +8,10 @@
   padding: 20px;
 }
 
-.back-button {
-  background-color: #007aff;
-  color: white;
-  width:45%;
-  float: left;
-  align-self: flex-start;
-  margin-bottom: 20px;
-}
+
 
 scroll-view {
-  height: 70vh;
+  height: 80vh;
   width: 100%;
   margin-bottom: 15vh;
   padding: 0 0;
@@ -66,8 +59,6 @@ scroll-view {
 }
 .bottom-button2 {
   padding: 10px 20px;
-  background-color: #007aff;
-  color: white;
   width:45% !important;
   float: right;
   border-radius: 5px;
