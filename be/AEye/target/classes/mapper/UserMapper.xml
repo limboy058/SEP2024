@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--指定该映射文件的命名空间（对应哪个mapper）-->
+<mapper namespace="alex.UTFProject.mapper.UserMapper">
+    <select id="getAllUser" resultMap="userList">
+        SELECT * FROM user;
+    </select>
+    <select id="getUserByName" resultType="alex.UTFProject.entity.User">
+        SELECT * FROM user where name=#{name};
+    </select>
+    <insert id="insertUser">
+        INSERT INTO user(name,password,email,type,score,total_Post_Day,continuous_Post_Day) values (#{name},#{password},#{email},0,0,0,0);
+    </insert>
+    <delete id="deleteUser">
+        DELETE from user where name=#{name} and password=#{password};
+    </delete>
+    <update id="changeUserPassword">
+        UPDATE user set password=#{newPassword} where name=#{name} and email=#{email};
+    </update>
+    <select id="getPhotoPathByName" resultType="String">
+        SELECT photopath from user where name=#{name};
+    </select>
+    <update id="changeUserInformation">
+        UPDATE user set name=#{name},password=#{password},email=#{email},signature=#{signature} where name=#{oldName};
+    </update>
+
+    <update id="uploadUserImgByName">
+        UPDATE user set photopath=#{photopath} where name=#{name};
+    </update>
+    <resultMap type="alex.UTFProject.entity.User" id="userList">
+        <!-- 定义主键 ,非常重要。如果是多个字段,则定义多个id -->
+        <!-- property：主键在pojo中的属性名 -->
+        <!-- column：主键在数据库中的列名 -->
+        <id property="name" column="name" />
+        <!-- 定义普通属性 -->
+        <result property="name" column="name" />
+        <result property="signature" column="signature"/>
+        <result property="email" column="email"/>
+        <result property="password" column="password"/>
+        <result property="totalPostDay" column="total_post_day"/>
+        <result property="continuousPostDay" column="continuous_post_day"/>
+        <result property="photoPath" column="photo_path" />
+        <result property="type" column="type"/>
+        <result property="sessionId" column="session_id"/>
+    </resultMap>
+</mapper>
