@@ -2,6 +2,22 @@
 var startX, endX; //首先创建2个变量 来记录触摸时的原点
 var moveFlag = true;// 判断执行滑动事件
 
+function replaceNewlines(input) {
+  let result = '';
+  for (let i = 0; i < input.length; i++) {
+      if (input[i] === '\n') {
+          result += '\\n';
+      } else if (input[i] === '\\') {
+          result += '\\\\';
+          //i++; // Skip the 'n' after the backslash
+      } else {
+          result += input[i];
+      }
+  }
+  return result;
+}
+
+
 Page({
   /**
    * 页面的初始数据
@@ -23,30 +39,50 @@ Page({
       mediaType:['image'],
       sizeType:['compressed'],
       success: (res) => {
-        const my_FilePath = res.tempFiles[0].tempFilePath;
+        let my_FilePath = res.tempFiles[0].tempFilePath;
+        wx.compressImage({
+          src: my_FilePath, 
+          quality: 100 ,
+          compressedHeight: 800,//调整图片size
+          success: (res) => {
+            my_FilePath=res.tempFilePath
+            console.log(my_FilePath)
+          }
+        })
         that.setData({
           aiResponse: "思考中......请等候约5秒"
         });
-        // console.log(app.globalData.loginCode);
+        let user_input=this.data.voiceInput 
+        if (user_input=='')
+          user_input='这是什么？'
+        console.log(user_input)
+
+        wx.getImageInfo({
+          src: res.tempFilePaths[0],
+          success (res) {
+            console.log(res.width)
+            console.log(res.height)
+          }
+
         wx.uploadFile({
           url: 'https://8629896bylf7.vicp.fun/AITalk', //仅为示例，非真实的接口地址
-          //url: 'http://124.71.204.55/aitalk',
           filePath: my_FilePath,
-          // header: {
-          //   'content-type': 'application/json' // 默认值
-          //   // 'content-type': 'application/x-www-form-urlencoded;charset=utf-8'
-          // },
           name: 'photo',
           
           formData: {
             loginCode: app.globalData.loginCode,
             newTalk: '1', // 或者 false，根据实际情况设置
             kind: this.data.fun_id,
-            question: this.data.voiceInput
+            question:replaceNewlines(user_input)
           },
           success: (res) => {
-            console.log(res.data); // 请求成功后的处理逻辑
-  
+            console.log(res); // 请求成功后的处理逻辑
+            if (res.statusCode!=210){
+              that.setData({
+                aiResponse: "网络连接错误"
+              });
+              return
+            }  
             that.setData({
               aiResponse: JSON.parse(res.data).response
               // unescape(res.data.replace(/\\u/g, '%u'))+app.globalData.loginCode
