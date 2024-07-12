@@ -3,7 +3,8 @@ Page({
   data: {
     // 可以在这里定义需要的数据
     questions: [],
-    questionInput: ''
+    questionInput: '',
+    fun_id:'1'
   },
   onLoad: function () {
     // 页面加载时的逻辑
@@ -120,12 +121,33 @@ Page({
     // 发送逻辑
     const that = this;
     const question = this.data.questionInput;
+    const app = getApp()
     wx.request({
       url: 'https://8629896bylf7.vicp.fun/AITalk', // 替换为你的后端接口地址
       method: 'POST',
-      data: { question },
+      header: {
+        'content-type': 'multipart/form-data;boundary=XXX' // 默认值
+      },
+      data:'\r\n--XXX' +
+        '\r\nContent-Disposition: form-data; name="loginCode"' +
+        '\r\n' +
+        '\r\n' + app.globalData.loginCode+
+        '\r\n--XXX' +
+        '\r\nContent-Disposition: form-data; name="newTalk"' +
+        '\r\n' +
+        '\r\n0' +
+        '\r\n--XXX'+
+        '\r\nContent-Disposition: form-data; name="kind"' +
+        '\r\n' +
+        '\r\n1' +
+        '\r\n--XXX'+
+        '\r\nContent-Disposition: form-data; name="question"' +
+        '\r\n' +
+        '\r\n' +question+
+        '\r\n--XXX--',
+
       success: (res) => {
-        if (res.statusCode === 201) {
+        if (res.statusCode === 200) {
           wx.showToast({
             title: '发送成功',
             icon: 'success'
@@ -139,7 +161,7 @@ Page({
             // unescape(res.data.replace(/\\u/g, '%u'))+app.globalData.loginCode
           });*/
         const currentData = that.data.questions; // 获取当前的对话数据
-        const newMessage = { id: 4, answer: JSON.parse(res.data).response, image: ""};// 新的对话消息
+        const newMessage = { id: 4, answer: res.data, image: ""};// 新的对话消息
 
         currentData.push(newMessage);
         that.setData({

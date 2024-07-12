@@ -38,11 +38,12 @@ Page({
       count: 1, //只能选择一张
       mediaType:['image'],
       sizeType:['compressed'],
+
       success: (res) => {
         wx.compressImage({
           src: res.tempFiles[0].tempFilePath, 
           quality: 100 ,
-          compressedHeight: 800,//调整图片size
+          compressedHeight: 800,//调整图片siz
           success: (res) => {
             let my_path=res.tempFilePath
             wx.getImageInfo({
@@ -67,7 +68,7 @@ Page({
               
               formData: {
                 loginCode: app.globalData.loginCode,
-                newTalk: '0', // 或者 false，根据实际情况设置
+                newTalk: '1', // 或者 false，根据实际情况设置
                 kind: this.data.fun_id,
                 question:replaceNewlines(user_input)
               },
@@ -75,24 +76,23 @@ Page({
                 console.log(res); // 请求成功后的处理逻辑
                 if (res.statusCode!=200){
                   that.setData({
-                    aiResponse: "网络连接错误"
+                    aiResponse: "网络连接异常"
                   });
                   return
                 }  
                 that.setData({
-                  aiResponse: JSON.parse(res.data).response
-                  // unescape(res.data.replace(/\\u/g, '%u'))+app.globalData.loginCode
+                  aiResponse: res.data
                 });
               },
               
               fail: (error) => {
                 console.error('请求失败', error); // 请求失败时的处理逻辑
                 that.setData({
-                  aiResponse: "网络连接异常"+app.globalData.loginCode
+                  aiResponse: "网络连接异常"
                 });
               }
             });
-            // You can add more code here to handle the photo, e.g., upload to server, analyze, etc.
+          
           }
         })
       },
