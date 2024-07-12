@@ -39,65 +39,64 @@ Page({
       mediaType:['image'],
       sizeType:['compressed'],
       success: (res) => {
-        let my_FilePath = res.tempFiles[0].tempFilePath;
         wx.compressImage({
-          src: my_FilePath, 
+          src: res.tempFiles[0].tempFilePath, 
           quality: 100 ,
           compressedHeight: 800,//调整图片size
           success: (res) => {
-            my_FilePath=res.tempFilePath
-            console.log(my_FilePath)
+            let my_path=res.tempFilePath
+            wx.getImageInfo({
+              src: my_path,
+              success (res) {
+                console.log(res.width)
+                console.log(res.height)
+              }
+            })
+            that.setData({
+              aiResponse: "思考中......请等候约5秒"
+            });
+            let user_input=this.data.voiceInput 
+            if (user_input=='')
+              user_input='这是什么？'
+            console.log(user_input)
+    
+            wx.uploadFile({
+              url: 'https://8629896bylf7.vicp.fun/AITalk', //仅为示例，非真实的接口地址
+              filePath: my_path,
+              name: 'photo',
+              
+              formData: {
+                loginCode: app.globalData.loginCode,
+                newTalk: '0', // 或者 false，根据实际情况设置
+                kind: this.data.fun_id,
+                question:replaceNewlines(user_input)
+              },
+              success: (res) => {
+                console.log(res); // 请求成功后的处理逻辑
+                if (res.statusCode!=200){
+                  that.setData({
+                    aiResponse: "网络连接错误"
+                  });
+                  return
+                }  
+                that.setData({
+                  aiResponse: JSON.parse(res.data).response
+                  // unescape(res.data.replace(/\\u/g, '%u'))+app.globalData.loginCode
+                });
+              },
+              
+              fail: (error) => {
+                console.error('请求失败', error); // 请求失败时的处理逻辑
+                that.setData({
+                  aiResponse: "网络连接异常"+app.globalData.loginCode
+                });
+              }
+            });
+            // You can add more code here to handle the photo, e.g., upload to server, analyze, etc.
           }
         })
-        that.setData({
-          aiResponse: "思考中......请等候约5秒"
-        });
-        let user_input=this.data.voiceInput 
-        if (user_input=='')
-          user_input='这是什么？'
-        console.log(user_input)
-
-        wx.getImageInfo({
-          src: res.tempFilePaths[0],
-          success (res) {
-            console.log(res.width)
-            console.log(res.height)
-          }
-
-        wx.uploadFile({
-          url: 'https://8629896bylf7.vicp.fun/AITalk', //仅为示例，非真实的接口地址
-          filePath: my_FilePath,
-          name: 'photo',
-          
-          formData: {
-            loginCode: app.globalData.loginCode,
-            newTalk: '1', // 或者 false，根据实际情况设置
-            kind: this.data.fun_id,
-            question:replaceNewlines(user_input)
-          },
-          success: (res) => {
-            console.log(res); // 请求成功后的处理逻辑
-            if (res.statusCode!=210){
-              that.setData({
-                aiResponse: "网络连接错误"
-              });
-              return
-            }  
-            that.setData({
-              aiResponse: JSON.parse(res.data).response
-              // unescape(res.data.replace(/\\u/g, '%u'))+app.globalData.loginCode
-            });
-          },
-          
-          fail: (error) => {
-            console.error('请求失败', error); // 请求失败时的处理逻辑
-            that.setData({
-              aiResponse: "网络连接异常"+app.globalData.loginCode
-            });
-          }
-        });
-        // You can add more code here to handle the photo, e.g., upload to server, analyze, etc.
       },
+        
       fail: () => {
         that.setData({
           aiResponse: '未上传图片'
