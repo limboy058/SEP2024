@@ -10,7 +10,7 @@
       "list": [
         {
           "name": "pages/fun1/fun1",
-          "pathName": "pages/fun1/fun1",
+          "pathName": "pages/detail/detail",
           "query": "",
           "launchMode": "default",
           "scene": null
