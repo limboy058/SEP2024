@@ -25,8 +25,10 @@ Page({
   data: {
     aiResponse: '提交后，此处将显示AI回复',
     voiceInput: '',
+    send_to_detail:'',
     fun_text:'实景识别',
-    fun_id:'1'
+    fun_id:'1',
+    pic_path: ''
   },
 
   // Function to handle "拍照" button click
@@ -46,6 +48,9 @@ Page({
           compressedHeight: 800,//调整图片siz
           success: (res) => {
             let my_path=res.tempFilePath
+            that.setData({
+              pic_path: res.tempFilePath
+            });
             wx.getImageInfo({
               src: my_path,
               success (res) {
@@ -54,15 +59,13 @@ Page({
               }
             })
             that.setData({
-              aiResponse: "思考中......请等候约5秒"
+              aiResponse: "思考中......请等候约3秒"
             });
             let user_input=this.data.voiceInput 
-            if (user_input=='')
-              user_input='这是什么？'
             console.log(user_input)
     
             wx.uploadFile({
-              url: 'https://8629896bylf7.vicp.fun/AITalk', //仅为示例，非真实的接口地址
+              url: 'http://124.71.207.55:8123/AITalk', 
               filePath: my_path,
               name: 'photo',
               
@@ -70,7 +73,8 @@ Page({
                 loginCode: app.globalData.loginCode,
                 newTalk: '1', // 或者 false，根据实际情况设置
                 kind: this.data.fun_id,
-                question:replaceNewlines(user_input)
+                //question:replaceNewlines(user_input)
+                question:user_input
               },
               success: (res) => {
                 console.log(res); // 请求成功后的处理逻辑
@@ -80,6 +84,10 @@ Page({
                   });
                   return
                 }  
+                this.setData({
+                  send_to_detail: user_input,
+                  voiceInput:''
+                });
                 that.setData({
                   aiResponse: res.data
                 });
@@ -107,10 +115,29 @@ Page({
 
   // Function to handle "详细询问" button click
   button2: function () {
-    wx.navigateTo({
-      url: '/pages/detail/detail'  // 指定目标页面路径
+    if(this.data.pic_path!=''){
+      wx.navigateTo({
+        url: '/pages/detail/detail?pic_path='+this.data.pic_path+'&que='+this.data.send_to_detail+'&ai_res='+this.data.aiResponse+'&fun_id='+this.data.fun_id  // 指定目标页面路径
+      });
+    }
+    else{
+      this.setData({
+        send_to_detail: ''
+      });
+      wx.navigateTo({
+        url: '/pages/detail/detail?pic_path='+this.data.pic_path+'&que='+this.data.voiceInput+'&ai_res='+this.data.aiResponse+'&fun_id='+this.data.fun_id // 指定目标页面路径
+      });
+    }
+    
+    this.setData({
+      pic_path: ''
     });
-
+    this.setData({
+      aiResponse: '提交后，此处将显示AI回复'
+    });
+    this.setData({
+      send_to_detail: ''
+    });
 
   },
 
