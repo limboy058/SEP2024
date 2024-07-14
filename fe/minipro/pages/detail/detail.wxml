@@ -2,17 +2,21 @@
 
   <scroll-view  scroll-y>
     <block wx:for="{{questions}}" wx:key="id">
-    <view class="ai-response">{{item.answer}}</view>
-    <image class="response-image" src="{{item.image}}" mode="aspectFit"></image>
-    <text>{{aiResponse}}</text>
+      <view wx:if="{{item.image}}"> 
+        <image class="response-image" src="{{item.image}}" mode="aspectFit"></image>
+      </view>
+      <view wx:if="{{item.que}}"> 
+        <view class="user-que">{{item.que}}</view>
+      </view>
+      <view class="ai-response">{{item.answer}}</view>
   </block>
   </scroll-view>
   
 
-  <input class="question-input" placeholder="提问" bindinput="onInput" />
+  <input class="question-input" placeholder="输入您的问题" bindinput="onInput" value="{{questionInput}}" />
   
   <view class="bottom-buttons">
-    <button class="bottom-button1"  bindtap="button1">拍照</button>
-    <button class="bottom-button2" bindtap="onSend">发送</button>
+    <button class="bottom-button1" type="default" bindtap="button1">添加图片并发送</button>
+    <button class="bottom-button2" type="primary" bindtap="onSend">直接发送</button>
   </view>
 </view>
