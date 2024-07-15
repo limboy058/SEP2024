@@ -9,15 +9,15 @@
     "miniprogram": {
       "list": [
         {
-          "name": "pages/detail/detail",
-          "pathName": "pages/detail/detail",
+          "name": "pages/index/index",
+          "pathName": "pages/index/index",
           "query": "",
           "launchMode": "default",
           "scene": null
         },
         {
-          "name": "pages/fun1/fun1",
-          "pathName": "pages/fun1/fun1",
+          "name": "pages/detail/detail",
+          "pathName": "pages/detail/detail",
           "query": "",
           "launchMode": "default",
           "scene": null
