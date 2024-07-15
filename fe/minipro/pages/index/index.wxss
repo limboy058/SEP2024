@@ -1,62 +1,55 @@
-/**index.wxss**/
-page {
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
-.scrollarea {
-  flex: 1;
-  overflow-y: hidden;
+/* pages/index/index.wxss */
+
+
+.header {
+  text-align: center;
+  font-size: 60rpx;
+  margin-bottom: 20rpx;
 }
 
-.userinfo {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  color: #aaa;
-  width: 80%;
+.ai-response {
+  border: 2px solid #000;
+  height: 900rpx;  /* 固定高度 */
+  padding: 20rpx;  /* 调整 padding 以适应新的高度 */
+  margin: 10rpx 0;
+  text-align: center;
+  font-size: 30rpx;
 }
 
-.userinfo-avatar {
-  overflow: hidden;
-  width: 128rpx;
-  height: 128rpx;
-  margin: 20rpx;
-  border-radius: 50%;
+.voice-input {
+  border: 2px solid #000;
+  height: 200rpx;  /* 固定高度 */
+  margin: 10rpx 10;
+  text-align: center;
+  overflow: hidden;  /* 启用溢出滚动 */
 }
 
-.usermotto {
-  margin-top: 200px;
-}
-
-.avatar-wrapper {
-  padding: 0;
-  width: 56px !important;
-  border-radius: 8px;
-  margin-top: 40px;
-  margin-bottom: 40px;
-}
-
-.avatar {
-  display: block;
-  width: 56px;
-  height: 56px;
-}
-
-.nickname-wrapper {
-  display: flex;
+.weui-textarea {
   width: 100%;
-  padding: 16px;
+  height: 100%;  /* 高度占满父容器 */
+  font-size: 35rpx;
+  padding: 10rpx;
   box-sizing: border-box;
-  border-top: .5px solid rgba(0, 0, 0, 0.1);
-  border-bottom: .5px solid rgba(0, 0, 0, 0.1);
-  color: black;
+  resize: none;  /* 禁用手动调整大小 */
+  overflow: auto;  /* 启用滚动条 */
+  
 }
 
-.nickname-label {
-  width: 105px;
+
+.buttons {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 10rpx;
 }
 
-.nickname-input {
-  flex: 1;
+.button1 {
+  padding: 50rpx 20rpx;
+  font-size: 40rpx;
+  cursor: pointer;
+}
+
+.button2 {
+  padding: 50rpx 20rpx;
+  font-size: 40rpx;
+  cursor: pointer;
 }

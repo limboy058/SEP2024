@@ -6,7 +6,6 @@ App({
     logs.unshift(Date.now())
     wx.setStorageSync('logs', logs)
 
-    // 登录
     wx.login({
       success: res => {
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
@@ -14,6 +13,7 @@ App({
         this.globalData.loginCode = res.code
       }
     })
+    //this.globalData.loginCode = '0f1Gtm000clytS1T1I200fx1Q43Gtm0T'
   },
   globalData: {
     loginCode:'null'
