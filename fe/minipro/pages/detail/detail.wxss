@@ -20,14 +20,21 @@ scroll-view {
 .response-image {
   width: 100%;
   height: 200px;
-  background-color: #ddd;
+  background-color: rgb(145,237,97);
   margin-bottom: 20px;
 }
 
-.ai-response {
-  width: 100%;
+.user-que {
+  width: 98%;
   padding: 10px;
-  background-color: #f0f0f0;
+  background-color: rgb(145,237,97);
+  margin-bottom: 10px;
+}
+
+.ai-response {
+  width: 98%;
+  padding: 10px;
+  background-color: rgb(241,241,241);
   margin-bottom: 10px;
 }
 
@@ -38,6 +45,7 @@ scroll-view {
   bottom: 50px;
   border: 1px solid #ccc;
   margin-bottom: 20px;
+  word-break: break-all;
 }
 
 .bottom-buttons {

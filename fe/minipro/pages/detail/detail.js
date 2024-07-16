@@ -1,57 +1,45 @@
 // index.js
+
 Page({
   data: {
     // 可以在这里定义需要的数据
-    questions: [{ id: 1, answer: "你好", image: "" }],
-    questionInput: ''
+    questions: [],
+    questionInput: '',
+    fun_id:'1'
   },
-  onLoad: function () {
-    // 页面加载时的逻辑
-    const that = this;
-    wx.request({
-      url: 'https://8629896bylf7.vicp.fun/AITalk', // 替换成实际的服务器地址
-      method: 'POST', // 请求方法：GET, POST等
-      success: (res) => {
-        console.log(res.data); // 打印服务器返回的数据
-        // 这里可以对返回的数据进行处理，更新页面数据等
-        if (res.statusCode === 201) {
-          wx.showToast({
-            title: '发送成功',
-            icon: 'success'
-          });
-          that.setData({
-            aiResponse: "思考中......请等候约5秒"
-          });}
-        that.setData({
-          
-          questions: res.data.questions
-          // unescape(res.data.replace(/\\u/g, '%u'))+app.globalData.loginCode
-        });
-      },
-      fail: (error) => {
-        console.error('请求失败', error);
-        // 处理请求失败的情况，例如显示错误信息给用户
-      }
+
+  append_msg: function (q,p,r) {
+    let currentData = this.data.questions; // 获取当前的对话数据
+    let newMessage = { id: currentData[currentData.length-1].id+1, que:q,image: p ,answer: r};
+    currentData.push(newMessage);
+    this.setData({
+      questions: currentData
+>>>>>>> develop
     });
-    /*
-    wx.request({
-      url: 'https://8629896bylf7.vicp.fun/AITalk', // 替换为你的后端接口地址
-      method: 'GET',
-      success: (res) => {
-        if (res.statusCode === 200) {
-          this.setData({
-            questions: res.data.questions
-          });
-        }
-      },
-      fail: (err) => {
-        console.error('Failed to fetch data:', err);
-        this.setData({
-          questions: [this.data.questions, {id: 0, answer: "网络错误",image:""}]
-        });
-      }
-    });*/
   },
+
+  set_last_msg: function (q,p,r) {
+    let currentData = this.data.questions; // 获取当前的对话数据
+    currentData[currentData.length-1] = { id: currentData[currentData.length-1].id, que:q, image: p ,answer: r};
+    this.setData({
+      questions: currentData
+    });
+  },
+
+  onLoad: function (options) {
+    // 页面加载时的逻辑
+      const { pic_path,que,ai_res ,fun_id} = options;
+      this.setData({
+        fun_id: fun_id
+      });
+      let currentData = this.data.questions; // 获取当前的对话数据
+      let newMessage = { id: 0, que:que,image: pic_path ,answer: ai_res};
+      currentData.push(newMessage);
+      this.setData({
+        questions: currentData
+      });
+  },
+
   button1: function () {
     const app = getApp()
     console.log(app.globalData.loginCode)
@@ -61,106 +49,121 @@ Page({
       mediaType:['image'],
       sizeType:['compressed'],
       success: (res) => {
-        const my_FilePath = res.tempFiles[0].tempFilePath;
-        that.setData({
-          aiResponse: "思考中......请等候约5秒"
-        });
-        // console.log(app.globalData.loginCode);
-        wx.uploadFile({
-          url: 'https://8629896bylf7.vicp.fun/AITalk', //仅为示例，非真实的接口地址
-          //url: 'http://124.71.204.55/aitalk',
-          filePath: my_FilePath,
-          // header: {
-          //   'content-type': 'application/json' // 默认值
-          //   // 'content-type': 'application/x-www-form-urlencoded;charset=utf-8'
-          // },
-          name: 'photo',
-          
-          formData: {
-            loginCode: app.globalData.loginCode,
-            newTalk: '1', // 或者 false，根据实际情况设置
-            kind: this.data.fun_id,
-            question: this.data.questionInput
-          },
+        wx.compressImage({
+          src: res.tempFiles[0].tempFilePath, 
+          quality: 100 ,
+          compressedHeight: 800,//调整图片siz
           success: (res) => {
-            console.log(res.data); // 请求成功后的处理逻辑
-            
-          
-            const currentData = that.data.questions; // 获取当前的对话数据
-            const newMessage = { id: 1, answer: JSON.parse(res.data).response, image: my_FilePath }; // 新的对话消息
-            //currentData.length+1
-            currentData.push(newMessage);
-            this.setData({
-              questions: currentData
-            });
-            /*
-            that.setData({
-              questions: [{ id: 1, answer: JSON.parse(res.data).response, image: my_FilePath }]
-              // unescape(res.data.replace(/\\u/g, '%u'))+app.globalData.loginCode
-            });*/
-          },
-          
-          fail: (error) => {
-            console.error('请求失败', error); // 请求失败时的处理逻辑
-            that.setData({
-              questions: [{ id: 1, answer: "网络连接异常"+app.globalData.loginCode, image: " " }]
+            let my_path=res.tempFilePath
+            wx.getImageInfo({
+              src: my_path,
+              success (res) {
+                console.log(res.width)
+                console.log(res.height)
+              }
+            })
+            let user_input=this.data.questionInput
+            this.append_msg(user_input,my_path,'思考中......请等候约3秒') 
+    
+            wx.uploadFile({
+              url: 'http://124.71.207.55:8123/AITalk', 
+              filePath: my_path,
+              name: 'photo',
+              
+              formData: {
+                loginCode: app.globalData.loginCode,
+                newTalk: '0', // 或者 false，根据实际情况设置
+                kind: this.data.fun_id,
+                //question:replaceNewlines(user_input)
+                question:user_input
+              },
+              success: (res) => {
+                console.log(res); // 请求成功后的处理逻辑
+                if (res.statusCode!=200){
+                  this.set_last_msg(user_input,my_path,'网络连接异常') 
+                  return
+                }  
+                this.setData({
+                  questionInput: ''
+                });
+                this.set_last_msg(user_input,my_path,res.data) 
+              },
+              
+              fail: (error) => {
+                console.error('请求失败', error); // 请求失败时的处理逻辑
+                this.set_last_msg(user_input,my_path,'网络连接异常') 
+              }
             });
           }
-        });
-        // You can add more code here to handle the photo, e.g., upload to server, analyze, etc.
+        })
       },
+        
       fail: () => {
-        that.setData({
-          questions: [{ id: 1, answer: "未上传图片", image: "https://via.placeholder.com/150" }]
-        });
+
       }
     });
   },
+
+
   onInput: function (e) {
     this.setData({
       questionInput: e.detail.value
     });
   },
+
+
   onSend: function () {
     // 发送逻辑
     const that = this;
     const question = this.data.questionInput;
+<<<<<<< HEAD
 
+=======
+    const app = getApp()
+    this.append_msg(question,'','思考中......请等候约1秒') 
+>>>>>>> develop
     wx.request({
-      url: 'https://8629896bylf7.vicp.fun/AITalk', // 替换为你的后端接口地址
+      url: 'http://124.71.207.55:8123/AITalk', // 替换为你的后端接口地址
       method: 'POST',
-      data: { question },
-      success: (res) => {
-        
-        //if (res.statusCode === 201) {
-          wx.showToast({
-            title: '发送成功',
-            icon: 'success'
-          });
-          that.setData({
-            aiResponse: "思考中......请等候约5秒"
-          });
-        const currentData = that.data.questions; // 获取当前的对话数据
-        const newMessage = { id: currentData.length+1, answer: JSON.parse(res.data).response, image: ""};// 新的对话消息
+      header: {
+        'content-type': 'multipart/form-data;boundary=XXX' // 默认值
+      },
+      data:'\r\n--XXX' +
+        '\r\nContent-Disposition: form-data; name="loginCode"' +
+        '\r\n' +
+        '\r\n' + app.globalData.loginCode+
+        '\r\n--XXX' +
+        '\r\nContent-Disposition: form-data; name="newTalk"' +
+        '\r\n' +
+        '\r\n0' +
+        '\r\n--XXX'+
+        '\r\nContent-Disposition: form-data; name="kind"' +
+        '\r\n' +
+        '\r\n' + this.data.fun_id+
+        '\r\n--XXX'+
+        '\r\nContent-Disposition: form-data; name="question"' +
+        '\r\n' +
+        '\r\n' +question+
+        '\r\n--XXX--',
 
-        currentData.push(newMessage);
-        that.setData({
-          questions: currentData
-        });
-        that.setData({
-          aiResponse: " "
-        });
-        //}
+      success: (res) => {
+        if (res.statusCode == 200) {
+          // wx.showToast({
+          //   title: '发送成功',
+          //   icon: 'success'
+          // });
+          this.set_last_msg(question,'',res.data) 
+          this.setData({
+            questionInput: ''
+          });
+        }
+        else{
+          this.set_last_msg(question,'','网络连接异常') 
+        }
       },
       fail: (err) => {
         console.error('Failed to send question:', err);
-        const currentData = that.data.questions; // 获取当前的对话数据
-        const newMessage = { id: 4, answer: "寄了", image: "" }; // 新的对话消息
-
-        currentData.push(newMessage);
-        this.setData({
-          questions: currentData
-        });
+        this.set_last_msg(question,'','网络连接异常') 
       }
     });
     
