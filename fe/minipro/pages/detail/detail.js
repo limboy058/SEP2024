@@ -14,7 +14,6 @@ Page({
     currentData.push(newMessage);
     this.setData({
       questions: currentData
->>>>>>> develop
     });
   },
 
@@ -116,12 +115,8 @@ Page({
     // 发送逻辑
     const that = this;
     const question = this.data.questionInput;
-<<<<<<< HEAD
-
-=======
-    const app = getApp()
-    this.append_msg(question,'','思考中......请等候约1秒') 
->>>>>>> develop
+    const app = getApp();
+    this.append_msg(question,'','思考中......请等候约1秒');
     wx.request({
       url: 'http://124.71.207.55:8123/AITalk', // 替换为你的后端接口地址
       method: 'POST',
