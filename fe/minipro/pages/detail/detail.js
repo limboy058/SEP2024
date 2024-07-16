@@ -2,7 +2,7 @@
 Page({
   data: {
     // 可以在这里定义需要的数据
-    questions: [],
+    questions: [{ id: 1, answer: "你好", image: "" }],
     questionInput: ''
   },
   onLoad: function () {
@@ -14,9 +14,17 @@ Page({
       success: (res) => {
         console.log(res.data); // 打印服务器返回的数据
         // 这里可以对返回的数据进行处理，更新页面数据等
-        
+        if (res.statusCode === 201) {
+          wx.showToast({
+            title: '发送成功',
+            icon: 'success'
+          });
+          that.setData({
+            aiResponse: "思考中......请等候约5秒"
+          });}
         that.setData({
-          questions: [{ id: 1, answer: " ", image: "https://via.placeholder.com/150" }]
+          
+          questions: res.data.questions
           // unescape(res.data.replace(/\\u/g, '%u'))+app.globalData.loginCode
         });
       },
@@ -77,13 +85,10 @@ Page({
           success: (res) => {
             console.log(res.data); // 请求成功后的处理逻辑
             
-            that.setData({
-              aiResponse: " "
-              // unescape(res.data.replace(/\\u/g, '%u'))+app.globalData.loginCode
-            });
+          
             const currentData = that.data.questions; // 获取当前的对话数据
-            const newMessage = { id: 4, answer: JSON.parse(res.data).response, image: my_FilePath }; // 新的对话消息
-
+            const newMessage = { id: 1, answer: JSON.parse(res.data).response, image: my_FilePath }; // 新的对话消息
+            //currentData.length+1
             currentData.push(newMessage);
             this.setData({
               questions: currentData
@@ -98,7 +103,7 @@ Page({
           fail: (error) => {
             console.error('请求失败', error); // 请求失败时的处理逻辑
             that.setData({
-              questions: [{ id: 1, answer: "网络连接异常"+app.globalData.loginCode, image: "https://via.placeholder.com/150" }]
+              questions: [{ id: 1, answer: "网络连接异常"+app.globalData.loginCode, image: " " }]
             });
           }
         });
@@ -120,12 +125,14 @@ Page({
     // 发送逻辑
     const that = this;
     const question = this.data.questionInput;
+
     wx.request({
       url: 'https://8629896bylf7.vicp.fun/AITalk', // 替换为你的后端接口地址
       method: 'POST',
       data: { question },
       success: (res) => {
-        if (res.statusCode === 201) {
+        
+        //if (res.statusCode === 201) {
           wx.showToast({
             title: '发送成功',
             icon: 'success'
@@ -133,19 +140,17 @@ Page({
           that.setData({
             aiResponse: "思考中......请等候约5秒"
           });
-          // aiResponse: JSON.parse(res.data).response
-          /*that.setData({
-            questions: up + [{ id: 4, answer: JSON.parse(res.data).response, image: "" }]
-            // unescape(res.data.replace(/\\u/g, '%u'))+app.globalData.loginCode
-          });*/
         const currentData = that.data.questions; // 获取当前的对话数据
-        const newMessage = { id: 4, answer: JSON.parse(res.data).response, image: ""};// 新的对话消息
+        const newMessage = { id: currentData.length+1, answer: JSON.parse(res.data).response, image: ""};// 新的对话消息
 
         currentData.push(newMessage);
         that.setData({
           questions: currentData
         });
-        }
+        that.setData({
+          aiResponse: " "
+        });
+        //}
       },
       fail: (err) => {
         console.error('Failed to send question:', err);
