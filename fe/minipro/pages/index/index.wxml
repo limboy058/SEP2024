@@ -1,2 +1,34 @@
-<!--pages/index/index.wxml-->
-<text>pages/index/index.wxml</text>
+<!--index.wxml-->
+
+<spring wx:if="{{pageCur == 'fun1'}}"></spring>
+<summer wx:if="{{pageCur == 'fun3'}}"></summer>
+<autumn wx:if="{{pageCur == 'fun2'}}"></autumn>
+<winter wx:if="{{pageCur == 'index'}}"></winter>
+<view class="fu-bar shadow foot">
+  <view class="cell" bindtap="navChange" data-cur="index">
+		<view class="image">
+			<image src="/image/ic_nav_main_category{{pageCur == 'index' ? '_press' : ''}}.png"></image>
+		</view>
+    <view class="{{pageCur == 'winter' ? 'text-blue' : 'text-gray'}}">首页</view>
+	</view>
+	<view class="cell" bindtap="navChange" data-cur="fun1">
+		<view class="image">
+			<image src="/image/ic_nav_main_category{{pageCur == 'fun1' ? '_press' : ''}}.png"></image>
+		</view>
+    <view class="{{pageCur == 'fun1' ? 'text-blue' : 'text-gray'}}">实景识别</view>
+	</view>
+  <view class="cell" bindtap="navChange" data-cur="fun3">
+		<view class="image">
+			<image src="/image/ic_nav_main_category{{pageCur == 'fun3' ? '_press' : ''}}.png"></image>
+		</view>
+    <view class="{{pageCur == 'summer' ? 'text-blue' : 'text-gray'}}">人脸识别</view>
+	</view>
+  <view class="cell" bindtap="navChange" data-cur="fun2">
+		<view class="image">
+			<image src="/image/ic_nav_main_category{{pageCur == 'fun2' ? '_press' : ''}}.png"></image>
+		</view>
+    <view class="{{pageCur == 'fun2' ? 'text-blue' : 'text-gray'}}">文字识别</view>
+	</view>
+  
+ 
+</view>

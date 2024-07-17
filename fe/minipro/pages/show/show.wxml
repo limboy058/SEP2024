@@ -1,0 +1,6 @@
+<view class="header">
+  <text>{{fun_text}}</text>
+</view>
+<view class="container">
+  <image src="/image/eye.jpg" mode="aspectFill"></image>
+</view>
