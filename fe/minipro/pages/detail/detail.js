@@ -66,7 +66,7 @@ Page({
             this.append_msg(user_input,my_path,'思考中......请等候约3秒') 
     
             wx.uploadFile({
-              url: 'http://124.71.207.55:8123/AITalk', 
+              url: 'http://101.132.112.59:8123/AITalk', 
               filePath: my_path,
               name: 'photo',
               
@@ -120,7 +120,7 @@ Page({
     const app = getApp()
     this.append_msg(question,'','思考中......请等候约1秒') 
     wx.request({
-      url: 'http://124.71.207.55:8123/AITalk', // 替换为你的后端接口地址
+      url: 'http://101.132.112.59:8123/AITalk', // 替换为你的后端接口地址
       method: 'POST',
       header: {
         'content-type': 'multipart/form-data;boundary=XXX' // 默认值

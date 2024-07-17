@@ -23,18 +23,53 @@ Page({
    * 页面的初始数据
    */
   data: {
-    aiResponse: '提交后，此处将显示AI回复',
+    aiResponse: '提交后，此处将显示回复',
     voiceInput: '',
-    send_to_detail:'',
     fun_text:'人脸识别',
     fun_id:'3',
-    pic_path: ''
+    all_face_name:''
   },
+
+  get_all_name:function(){
+    var app = getApp()
+    wx.request({
+      url: 'http://101.132.112.59:8123/getPersonImg', // 替换为你的后端接口地址
+      method: 'POST',
+      header: {
+        'content-type': 'multipart/form-data;boundary=XXX' // 默认值
+      },
+      data:'\r\n--XXX' +
+        '\r\nContent-Disposition: form-data; name="loginCode"' +
+        '\r\n' +
+        '\r\n' + app.globalData.loginCode+
+        '\r\n--XXX--',
+
+      success: (res) => {
+        if (res.statusCode == 200) {
+          this.setData({
+            all_face_name: '您已上传:\n'+res.data
+          });
+        }
+        else{
+          console.error('err', res.data);
+          this.setData({
+            all_face_name: '获取已上传的人脸信息失败'
+          });
+        }
+      },
+      fail: (err) => {
+        console.error('Failed to send question:', err);
+        this.setData({
+          all_face_name: '获取已上传的人脸信息失败'
+        });
+      }
+    });
+  },
+
 
   // Function to handle "拍照" button click
   button1: function () {
     const app = getApp()
-    console.log(app.globalData.loginCode)
     const that = this;
     wx.chooseMedia({
       count: 1, //只能选择一张
@@ -48,9 +83,6 @@ Page({
           compressedHeight: 800,//调整图片siz
           success: (res) => {
             let my_path=res.tempFilePath
-            that.setData({
-              pic_path: res.tempFilePath
-            });
             wx.getImageInfo({
               src: my_path,
               success (res) {
@@ -59,22 +91,15 @@ Page({
               }
             })
             that.setData({
-              aiResponse: "思考中......请等候约3秒"
+              aiResponse: "上传中......请等候约1秒"
             });
-            let user_input=this.data.voiceInput 
-            console.log(user_input)
     
             wx.uploadFile({
-              url: 'http://124.71.207.55:8123/AITalk', 
+              url: 'http://101.132.112.59:8123/faceDetect', 
               filePath: my_path,
-              name: 'photo',
-              
+              name: 'photo',  
               formData: {
-                loginCode: app.globalData.loginCode,
-                newTalk: '1', // 或者 false，根据实际情况设置
-                kind: this.data.fun_id,
-                //question:replaceNewlines(user_input)
-                question:user_input
+                loginCode: app.globalData.loginCode
               },
               success: (res) => {
                 console.log(res); // 请求成功后的处理逻辑
@@ -85,11 +110,8 @@ Page({
                   return
                 }  
                 this.setData({
-                  send_to_detail: user_input,
+                  aiResponse: res.data,
                   voiceInput:''
-                });
-                that.setData({
-                  aiResponse: res.data
                 });
               },
               
@@ -113,34 +135,142 @@ Page({
     });
   },
 
-  // Function to handle "详细询问" button click
-  button2: function () {
-    if(this.data.pic_path!=''){
-      wx.navigateTo({
-        url: '/pages/detail/detail?pic_path='+this.data.pic_path+'&que='+this.data.send_to_detail+'&ai_res='+this.data.aiResponse+'&fun_id='+this.data.fun_id  // 指定目标页面路径
-      });
-    }
-    else{
-      this.setData({
-        send_to_detail: ''
-      });
-      wx.navigateTo({
-        url: '/pages/detail/detail?pic_path='+this.data.pic_path+'&que='+this.data.voiceInput+'&ai_res='+this.data.aiResponse+'&fun_id='+this.data.fun_id // 指定目标页面路径
-      });
-    }
-    
-    this.setData({
-      pic_path: ''
-    });
-    this.setData({
-      aiResponse: '提交后，此处将显示AI回复'
-    });
-    this.setData({
-      send_to_detail: ''
-    });
 
+  // Function to handle "拍照" button click
+  button2: function () {
+    if (this.data.voiceInput =='')
+    {
+      this.setData({
+        aiResponse: "请输入名称"
+      });
+      return
+    }
+    const app = getApp()
+    console.log(app.globalData.loginCode)
+    const that = this;
+    wx.chooseMedia({
+      count: 1, //只能选择一张
+      mediaType:['image'],
+      sizeType:['compressed'],
+
+      success: (res) => {
+        wx.compressImage({
+          src: res.tempFiles[0].tempFilePath, 
+          quality: 100 ,
+          compressedHeight: 800,//调整图片siz
+          success: (res) => {
+            let my_path=res.tempFilePath
+            wx.getImageInfo({
+              src: my_path,
+              success (res) {
+                console.log(res.width)
+                console.log(res.height)
+              }
+            })
+            that.setData({
+              aiResponse: "上传中......请稍等"
+            });
+            let user_input=this.data.voiceInput 
+            console.log(user_input)
+    
+            wx.uploadFile({
+              url: 'http://101.132.112.59:8123/addPersonImg', 
+              filePath: my_path,
+              name: 'photo',
+              
+              formData: {
+                loginCode: app.globalData.loginCode,
+                name:user_input
+              },
+              success: (res) => {
+                console.log(res); // 请求成功后的处理逻辑
+                if (res.statusCode!=200){
+                  that.setData({
+                    aiResponse: "网络连接异常"
+                  });
+                  return
+                }  
+                that.setData({
+                  aiResponse: res.data
+                });
+                this.get_all_name()
+              },
+              
+              fail: (error) => {
+                console.error('请求失败', error); // 请求失败时的处理逻辑
+                that.setData({
+                  aiResponse: "网络连接异常"
+                });
+              }
+            });
+          
+          }
+        })
+      },
+        
+      fail: () => {
+        that.setData({
+          aiResponse: '未上传图片'
+        });
+      }
+    });
   },
 
+  // Function to handle "拍照" button click
+  button3: function () {
+    if (this.data.voiceInput =='')
+    {
+      this.setData({
+        aiResponse: "请输入名称"
+      });
+      return
+    }
+    const app = getApp()
+    this.setData({
+      aiResponse: "删除中......请稍等"
+    });
+    wx.request({
+      url: 'http://101.132.112.59:8123/deletePersonImg', // 替换为你的后端接口地址
+      method: 'POST',
+      header: {
+        'content-type': 'multipart/form-data;boundary=XXX' // 默认值
+      },
+      data:'\r\n--XXX' +
+        '\r\nContent-Disposition: form-data; name="loginCode"' +
+        '\r\n' +
+        '\r\n' + app.globalData.loginCode+
+        '\r\n--XXX' +
+        '\r\nContent-Disposition: form-data; name="name"' +
+        '\r\n' +
+        '\r\n' + this.data.voiceInput+
+        '\r\n--XXX--',
+        
+
+      success: (res) => {
+        if (res.statusCode == 200) {
+          this.setData({
+            aiResponse: res.data,
+            voiceInput: ''
+          });
+          this.get_all_name()
+        }
+        else{
+          this.setData({
+            aiResponse: '网络连接异常'
+          });
+        }
+      },
+      fail: (err) => {
+        console.error('Failed to send question:', err);
+        that.setData({
+          aiResponse: '网络连接异常'
+        });
+      }
+    });
+  },
+
+
+  
   // 下面三个函数是实现在AI对话框中捕捉滑动的逻辑
   onInputChange: function (e) {
     this.setData({
@@ -235,13 +365,14 @@ console.log('详情')
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
+    
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady() {
-    
+    this.get_all_name()
   },
 
   /**

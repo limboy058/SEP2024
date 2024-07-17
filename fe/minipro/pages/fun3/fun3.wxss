@@ -9,7 +9,16 @@
 
 .ai-response {
   border: 2px solid #000;
-  height: 900rpx;  /* 固定高度 */
+  height: 500rpx;  /* 固定高度 */
+  padding: 20rpx;  /* 调整 padding 以适应新的高度 */
+  margin: 10rpx 0;
+  text-align: center;
+  font-size: 30rpx;
+}
+
+.face_name {
+  border: 2px solid #000;
+  height: 400rpx;  /* 固定高度 */
   padding: 20rpx;  /* 调整 padding 以适应新的高度 */
   margin: 10rpx 0;
   text-align: center;
@@ -18,7 +27,7 @@
 
 .voice-input {
   border: 2px solid #000;
-  height: 200rpx;  /* 固定高度 */
+  height: 150rpx;  /* 固定高度 */
   margin: 10rpx 10;
   text-align: center;
   overflow: hidden;  /* 启用溢出滚动 */
@@ -38,18 +47,26 @@
 
 .buttons {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   margin-top: 10rpx;
+  bottom: 20px;
+  justify-content: flex-end;
 }
 
 .button1 {
-  padding: 50rpx 20rpx;
-  font-size: 40rpx;
+  padding: 50rpx 40rpx;
+  font-size: 35rpx;
   cursor: pointer;
 }
 
 .button2 {
   padding: 50rpx 20rpx;
-  font-size: 40rpx;
+  font-size: 35rpx;
+  cursor: pointer;
+}
+
+.button3 {
+  padding: 50rpx 20rpx;
+  font-size: 35rpx;
   cursor: pointer;
 }

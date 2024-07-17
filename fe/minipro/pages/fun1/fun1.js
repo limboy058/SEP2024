@@ -65,7 +65,7 @@ Page({
             console.log(user_input)
     
             wx.uploadFile({
-              url: 'http://124.71.207.55:8123/AITalk', 
+              url: 'http://101.132.112.59:8123/AITalk', 
               filePath: my_path,
               name: 'photo',
               
