@@ -1,27 +1,37 @@
 <!--index.wxml-->
-<scroll-view class="scrollarea" scroll-y type="list">
-  <view class="container">
-    <view class="userinfo">
-      <block wx:if="{{canIUseNicknameComp && !hasUserInfo}}">
-        <button class="avatar-wrapper" open-type="chooseAvatar" bind:chooseavatar="onChooseAvatar">
-          <image class="avatar" src="{{userInfo.avatarUrl}}"></image>
-        </button>
-        <view class="nickname-wrapper">
-          <text class="nickname-label">昵称</text>
-          <input type="nickname" class="nickname-input" placeholder="请输入昵称" bind:change="onInputChange" />
-        </view>
-      </block>
-      <block wx:elif="{{!hasUserInfo}}">
-        <button wx:if="{{canIUseGetUserProfile}}" bindtap="getUserProfile"> 获取头像昵称 </button>
-        <view wx:else> 请使用2.10.4及以上版本基础库 </view>
-      </block>
-      <block wx:else>
-        <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-        <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-      </block>
-    </view>
-    <view class="usermotto">
-      <text class="user-motto">{{motto}}</text>
-    </view>
-  </view>
-</scroll-view>
+
+<view bindtouchstart="touchStart" bindtouchmove="touchMove" bindtouchend="touchEnd">
+  <spring wx:if="{{pageCur == 'fun1'}}"></spring>
+  <summer wx:if="{{pageCur == 'fun2'}}"></summer>
+  <autumn id="id_of_fun3" wx:if="{{pageCur == 'fun3'}}"></autumn>
+  <winter wx:if="{{pageCur == 'show'}}"></winter>
+</view>
+
+<view class="fu-bar shadow foot" bindchange_cur="change_cur">
+  <view class="cell" bindtap="navChange" data-cur="show">
+		<view class="image">
+			<image src="/image/ic_nav_main_category{{pageCur == 'show' ? '_press' : ''}}.png"></image>
+		</view>
+    <view class="{{pageCur == 'winter' ? 'text-blue' : 'text-gray'}}">首页</view>
+	</view>
+	<view class="cell" bindtap="navChange" data-cur="fun1">
+		<view class="image">
+			<image src="/image/ic_nav_main_category{{pageCur == 'fun1' ? '_press' : ''}}.png"></image>
+		</view>
+    <view class="{{pageCur == 'fun1' ? 'text-blue' : 'text-gray'}}">实景识别</view>
+	</view>
+  <view class="cell" bindtap="navChange" data-cur="fun2">
+		<view class="image">
+			<image src="/image/ic_nav_main_category{{pageCur == 'fun2' ? '_press' : ''}}.png"></image>
+		</view>
+    <view class="{{pageCur == 'summer' ? 'text-blue' : 'text-gray'}}">文字识别</view>
+	</view>
+  <view class="cell" bindtap="navChange" data-cur="fun3">
+		<view class="image">
+			<image src="/image/ic_nav_main_category{{pageCur == 'fun3' ? '_press' : ''}}.png"></image>
+		</view>
+    <view class="{{pageCur == 'fun2' ? 'text-blue' : 'text-gray'}}">人脸识别</view>
+	</view>
+  
+ 
+</view>

@@ -1,9 +1,12 @@
 {
   "pages": [
-    "pages/fun1/fun1",
     "pages/index/index",
+    "pages/fun1/fun1",
+    "pages/fun3/fun3",
     "pages/logs/logs",
-    "pages/detail/detail"
+    "pages/detail/detail",
+    "pages/show/show",
+    "pages/fun2/fun2"
   ],
   "window": {
     "navigationBarTextStyle": "black",

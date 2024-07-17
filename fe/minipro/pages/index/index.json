@@ -1,4 +1,8 @@
 {
   "usingComponents": {
+    "winter": "/pages/show/show",
+    "spring": "/pages/fun1/fun1",
+    "summer": "/pages/fun2/fun2",
+    "autumn": "/pages/fun3/fun3"
   }
 }

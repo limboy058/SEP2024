@@ -1,0 +1,23 @@
+<!--pages/index/index.wxml-->
+
+<view class="header">
+  <text>{{fun_text}}</text>
+</view>
+
+<view class="ai_response3">
+  <text>{{aiResponse}}</text>
+</view>
+
+<view class="face_name3">
+  <text>{{all_face_name}}</text>
+</view>
+
+<view class="voice-input3">
+  <textarea class="weui-textarea" placeholder="输入修改的人脸名称" bindinput="onInputChange" maxlength="200" value="{{voiceInput}}" ></textarea>
+</view>
+
+<view class="buttons3">
+  <button type="primary" class="button13" bindtap="button1">拍照询问</button>
+  <button type="default" class="button23" bindtap="button2">上传相关人脸</button>
+  <button type="default" class="button33" bindtap="button3">删除相关人脸</button>
+</view>
