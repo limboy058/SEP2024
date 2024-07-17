@@ -1,34 +1,17 @@
 package alex.UTFProject.mapper;
-import alex.UTFProject.entity.User;
-import alex.UTFProject.base.MyMapper;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-import org.springframework.stereotype.Repository;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
 @Mapper
-@Repository
-public interface UserMapper extends MyMapper<User> {
+public interface UserMapper {
+    @Insert("insert into utf.user_img values(#{openId},#{img_name},#{path});")
+    void addUserImg(@Param("openId")String openId,@Param("img_name")String img_name,@Param("path")String path);
+    @Delete("delete from utf.user_img where openId=#{openId} and img_name like concat(#{img_name},'_%');")
+    void deleteUserImg(@Param("openId")String openId,@Param("img_name")String img_name);
+    @Select("SELECT count(*) FROM utf.user_img where openId=#{openId} and img_name like concat(#{img_name},'_%');")
+    Integer getUserImg(@Param("openId")String openId,@Param("img_name")String img_name);
+    @Select("SELECT img_name FROM utf.user_img where openId=#{openId};")
+    List<String> getUserAllImg(@Param("openId")String openId);
 
-    List<User> getAllUser();
-
-    void uploadUserImgByName(@Param("name")String name,@Param("photopath")String photopath);
-
-    User getUserByName(@Param("name")String name);
-
-    void deleteUser(@Param("name")String name, @Param("password")String password);
-
-    void changeUserPassword(@Param("name")String name, @Param("email")String email,@Param("newPassword")String newPassword);
-
-    String getPhotoPathByName(@Param("name")String name);
-
-    void changeUserInformation(@Param("name")String name,
-                               @Param("password")String password,
-                               @Param("email")String email,
-                               @Param("signature")String signature,
-                               @Param("oldName")String oldName);
-
-    @Deprecated
-    void insertUser(@Param("name")String name, @Param("password")String password, @Param("email") String email);
 }

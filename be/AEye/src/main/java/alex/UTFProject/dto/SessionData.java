@@ -30,7 +30,7 @@ public class SessionData implements Serializable {
      */
     @Id
     @ApiModelProperty("用户id")
-    private String id;
+    private Long id;
 
     @Id
     @ApiModelProperty("用户名")
@@ -63,6 +63,15 @@ public class SessionData implements Serializable {
     public SessionData(User user) {
         AssertUtil.notNull(user, CommonErrorCode.USER_NOT_EXIST);
         this.id = user.getId();
+        this.continuousPostDay = user.getContinuousPostDay();
+        this.email = user.getEmail();
+        this.name = user.getName();
+        this.password = user.getPassword();
+        this.photopath = user.getPhotopath();
+        this.sessionId = user.getSessionId();
+        this.signature = user.getSignature();
+        this.totalPostDay = user.getTotalPostDay();
+        this.type = user.getType();
     }
 
 }
