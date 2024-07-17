@@ -7,25 +7,25 @@
   margin-bottom: 20rpx;
 }
 
-.ai-response {
+.ai_response3 {
   border: 2px solid #000;
-  height: 500rpx;  /* 固定高度 */
+  height: 550rpx;  /* 固定高度 */
   padding: 20rpx;  /* 调整 padding 以适应新的高度 */
   margin: 10rpx 0;
   text-align: center;
   font-size: 30rpx;
 }
 
-.face_name {
+.face_name3 {
   border: 2px solid #000;
-  height: 400rpx;  /* 固定高度 */
+  height: 200rpx;  /* 固定高度 */
   padding: 20rpx;  /* 调整 padding 以适应新的高度 */
   margin: 10rpx 0;
   text-align: center;
   font-size: 30rpx;
 }
 
-.voice-input {
+.voice-input3 {
   border: 2px solid #000;
   height: 150rpx;  /* 固定高度 */
   margin: 10rpx 10;
@@ -45,7 +45,7 @@
 }
 
 
-.buttons {
+.buttons3 {
   display: flex;
   justify-content: space-between;
   margin-top: 10rpx;
@@ -53,19 +53,19 @@
   justify-content: flex-end;
 }
 
-.button1 {
-  padding: 50rpx 40rpx;
-  font-size: 35rpx;
-  cursor: pointer;
-}
-
-.button2 {
+.button13 {
   padding: 50rpx 20rpx;
   font-size: 35rpx;
   cursor: pointer;
 }
 
-.button3 {
+.button23 {
+  padding: 50rpx 20rpx;
+  font-size: 35rpx;
+  cursor: pointer;
+}
+
+.button33 {
   padding: 50rpx 20rpx;
   font-size: 35rpx;
   cursor: pointer;

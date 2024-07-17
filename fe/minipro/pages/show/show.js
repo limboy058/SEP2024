@@ -5,7 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    fun_text:"Be my eye"
+    fun_text:"Aeye"
   },
 
   /**
