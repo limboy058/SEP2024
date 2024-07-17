@@ -1,6 +1,3 @@
-// 用来处理滑动逻辑的变量
-var startX, endX; //首先创建2个变量 来记录触摸时的原点
-var moveFlag = true;// 判断执行滑动事件
 
 function replaceNewlines(input) {
   let result = '';
@@ -141,7 +138,7 @@ Page({
     if (this.data.voiceInput =='')
     {
       this.setData({
-        aiResponse: "请输入名称"
+        aiResponse: " 您未输入名称"
       });
       return
     }
@@ -221,7 +218,7 @@ Page({
     if (this.data.voiceInput =='')
     {
       this.setData({
-        aiResponse: "请输入名称"
+        aiResponse: "您未输入名称"
       });
       return
     }
@@ -271,95 +268,13 @@ Page({
 
 
   
-  // 下面三个函数是实现在AI对话框中捕捉滑动的逻辑
+
   onInputChange: function (e) {
     this.setData({
       voiceInput: e.detail.value
     });
   },
-  touchStart: function (e) {
-    startX = e.touches[0].pageX; // 获取触摸时的原点
-    moveFlag = true;
-  },
-  // 触摸移动事件
-  touchMove: function (e) {
-    endX = e.touches[0].pageX; // 获取触摸时的原点
-    if (moveFlag) {
-      if (endX - startX > 50) {
-        this.move2right();
-        moveFlag = false;
-      }
-      if (startX - endX > 50) {
-        this.move2left();
-        moveFlag = false;
-      }
-    }
-  },
-  // 触摸结束事件
-  touchEnd: function (e) {
-    moveFlag = true; // 回复滑动事件
-  },
-  clicktab1:function(e){
-    this.move2right();
-   this.setData({
-     currentab:0
-   })
-console.log('详情')
-  },
-
-
-  // 将AI框体中滑动所产生的逻辑写到这里
-  move2left() {
-    console.log("move to left");
-    if (this.data.fun_id=='1')
-    {
-      this.setData({
-        fun_id:'2',
-        fun_text:'文字识别'
-      });
-    }
-    else if (this.data.fun_id=='2')
-    {
-      this.setData({
-        fun_id:'3',
-        fun_text:'人脸识别'
-      });
-    }
-    else if (this.data.fun_id=='3')
-    {
-      this.setData({
-        fun_id:'1',
-        fun_text:'实景识别'
-      });
-    }
-
-  },
-
-    // 将AI框体中滑动所产生的逻辑写到这里
-  move2right() {
-    console.log("move to right");
-    if (this.data.fun_id=='3')
-    {
-      this.setData({
-        fun_id:'2',
-        fun_text:'文字识别'
-      });
-    }
-    else if (this.data.fun_id=='1')
-    {
-      this.setData({
-        fun_id:'3',
-        fun_text:'人脸识别'
-      });
-    }
-    else if (this.data.fun_id=='2')
-    {
-      this.setData({
-        fun_id:'1',
-        fun_text:'实景识别'
-      });
-    }
-  },
+  
 
   /**
    * 生命周期函数--监听页面加载
@@ -372,13 +287,15 @@ console.log('详情')
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady() {
-    this.get_all_name()
+    
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow() {},
+  onShow() {
+    // this.get_all_name()
+  },
 
   /**
    * 生命周期函数--监听页面隐藏

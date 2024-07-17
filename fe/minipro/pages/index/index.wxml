@@ -1,13 +1,16 @@
 <!--index.wxml-->
 
-<spring wx:if="{{pageCur == 'fun1'}}"></spring>
-<summer wx:if="{{pageCur == 'fun3'}}"></summer>
-<autumn wx:if="{{pageCur == 'fun2'}}"></autumn>
-<winter wx:if="{{pageCur == 'index'}}"></winter>
-<view class="fu-bar shadow foot">
-  <view class="cell" bindtap="navChange" data-cur="index">
+<view bindtouchstart="touchStart" bindtouchmove="touchMove" bindtouchend="touchEnd">
+  <spring wx:if="{{pageCur == 'fun1'}}"></spring>
+  <summer wx:if="{{pageCur == 'fun2'}}"></summer>
+  <autumn id="id_of_fun3" wx:if="{{pageCur == 'fun3'}}"></autumn>
+  <winter wx:if="{{pageCur == 'show'}}"></winter>
+</view>
+
+<view class="fu-bar shadow foot" bindchange_cur="change_cur">
+  <view class="cell" bindtap="navChange" data-cur="show">
 		<view class="image">
-			<image src="/image/ic_nav_main_category{{pageCur == 'index' ? '_press' : ''}}.png"></image>
+			<image src="/image/ic_nav_main_category{{pageCur == 'show' ? '_press' : ''}}.png"></image>
 		</view>
     <view class="{{pageCur == 'winter' ? 'text-blue' : 'text-gray'}}">首页</view>
 	</view>
@@ -17,17 +20,17 @@
 		</view>
     <view class="{{pageCur == 'fun1' ? 'text-blue' : 'text-gray'}}">实景识别</view>
 	</view>
-  <view class="cell" bindtap="navChange" data-cur="fun3">
-		<view class="image">
-			<image src="/image/ic_nav_main_category{{pageCur == 'fun3' ? '_press' : ''}}.png"></image>
-		</view>
-    <view class="{{pageCur == 'summer' ? 'text-blue' : 'text-gray'}}">人脸识别</view>
-	</view>
   <view class="cell" bindtap="navChange" data-cur="fun2">
 		<view class="image">
 			<image src="/image/ic_nav_main_category{{pageCur == 'fun2' ? '_press' : ''}}.png"></image>
 		</view>
-    <view class="{{pageCur == 'fun2' ? 'text-blue' : 'text-gray'}}">文字识别</view>
+    <view class="{{pageCur == 'summer' ? 'text-blue' : 'text-gray'}}">文字识别</view>
+	</view>
+  <view class="cell" bindtap="navChange" data-cur="fun3">
+		<view class="image">
+			<image src="/image/ic_nav_main_category{{pageCur == 'fun3' ? '_press' : ''}}.png"></image>
+		</view>
+    <view class="{{pageCur == 'fun2' ? 'text-blue' : 'text-gray'}}">人脸识别</view>
 	</view>
   
  
