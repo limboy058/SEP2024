@@ -47,7 +47,6 @@ Page({
       count: 1, //只能选择一张
       mediaType:['image'],
       sizeType:['compressed'],
-
       success: (res) => {
         wx.compressImage({
           src: res.tempFiles[0].tempFilePath, 
@@ -94,7 +93,6 @@ Page({
                 this.set_last_msg(user_input,my_path,'网络连接异常') 
               }
             });
-          
           }
         })
       },
@@ -117,8 +115,8 @@ Page({
     // 发送逻辑
     const that = this;
     const question = this.data.questionInput;
-    const app = getApp()
-    this.append_msg(question,'','思考中......请等候约1秒') 
+    const app = getApp();
+    this.append_msg(question,'','思考中......请等候约1秒');
     wx.request({
       url: 'http://124.71.207.55:8123/AITalk', // 替换为你的后端接口地址
       method: 'POST',

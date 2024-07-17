@@ -9,7 +9,7 @@
 
 .ai-response {
   border: 2px solid #000;
-  height: 900rpx;  /* 固定高度 */
+  height: 780rpx;  /* 固定高度 */
   padding: 20rpx;  /* 调整 padding 以适应新的高度 */
   margin: 10rpx 0;
   text-align: center;
@@ -39,17 +39,20 @@
 .buttons {
   display: flex;
   justify-content: space-around;
+  bottom: 155rpx;
   margin-top: 10rpx;
 }
 
 .button1 {
   padding: 50rpx 20rpx;
   font-size: 40rpx;
+  bottom: 15rpx;
   cursor: pointer;
 }
 
 .button2 {
   padding: 50rpx 20rpx;
   font-size: 40rpx;
+  bottom: 15rpx;
   cursor: pointer;
 }

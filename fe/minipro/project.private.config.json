@@ -9,8 +9,8 @@
     "miniprogram": {
       "list": [
         {
-          "name": "pages/fun3/fun3",
-          "pathName": "pages/fun3/fun3",
+          "name": "pages/index/index",
+          "pathName": "pages/index/index",
           "query": "",
           "launchMode": "default",
           "scene": null
@@ -18,6 +18,13 @@
         {
           "name": "pages/fun1/fun1",
           "pathName": "pages/fun1/fun1",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "pages/fun3/fun3",
+          "pathName": "pages/fun3/fun3",
           "query": "",
           "launchMode": "default",
           "scene": null

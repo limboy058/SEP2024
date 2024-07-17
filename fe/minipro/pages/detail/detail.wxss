@@ -40,9 +40,9 @@ scroll-view {
 
 .question-input {
   width: 90%;
-  padding: 10px;
+  padding: 15px;
   position: fixed;
-  bottom: 50px;
+  bottom: 225rpx;
   border: 1px solid #ccc;
   margin-bottom: 20px;
   word-break: break-all;
@@ -51,23 +51,23 @@ scroll-view {
 .bottom-buttons {
   display: flex;
   position: fixed;
-  bottom: 10px;
+  bottom: 155rpx;
   justify-content: flex-end;
   width: 100%;
   margin-top: 20px;
 }
 
 .bottom-button1 {
-  padding: 10px 20px;
+  padding: 15px 20px;
   background-color: #007aff;
   color: white;
   width:45% !important;
   float: left;
-  border-radius: 5px;
+  border-radius: 10px;
 }
 .bottom-button2 {
-  padding: 10px 20px;
+  padding: 15px 20px;
   width:45% !important;
   float: right;
-  border-radius: 5px;
+  border-radius: 10px;
 }
