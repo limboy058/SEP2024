@@ -21,10 +21,39 @@ public class User implements Serializable {
 
     @Id
     @ApiModelProperty("用户id")
-    private String  id;
+    private Long id;
 
     @Id
-    @ApiModelProperty("用户openId")
-    private String openId;
+    @ApiModelProperty("用户名")
+    private String name;
 
+    @ApiModelProperty("会话id")
+    private String sessionId;
+
+    @ApiModelProperty("密码")
+    private String password;
+
+    @ApiModelProperty("邮箱")
+    private String email;
+
+    @ApiModelProperty("签名")
+    private String signature;
+
+    @ApiModelProperty("")
+    Integer totalPostDay;
+
+    @ApiModelProperty("")
+    Integer continuousPostDay;
+
+    @ApiModelProperty("头像地址")
+    String photopath;
+
+    @ApiModelProperty("用户类型 0为普通用户 1为管理员")
+    Integer type;
+
+    public User(String name,String password,String sessionId){
+        this.name=name;
+        this.password=password;
+        this.sessionId = sessionId;
+    }
 }

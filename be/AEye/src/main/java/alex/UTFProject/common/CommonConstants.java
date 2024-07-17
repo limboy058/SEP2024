@@ -15,6 +15,6 @@ public class CommonConstants {
     public final static String SIGN_TYPE_RSA = "RSA";
     public final static String SIGN_TYPE_HMAC_SHA256 = "HMAC-SHA256";
     public final static String LANG_TYPE_ZH_CN = "zh_CN";
-    public final static String USER_PIC_ADDRESS = "http://172.20.158.134/";
-    public final static String USER_PIC_LOCAL = "C:\\Users\\Administrator\\Desktop\\AIEye";
+    public final static String USER_PIC_ADDRESS = "http://101.132.112.59/";
+    public final static String USER_PIC_LOCAL = "/home/admin/AIEye_pic";
 }

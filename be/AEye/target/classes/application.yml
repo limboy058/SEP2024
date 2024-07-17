@@ -3,10 +3,10 @@ server:
 
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3306/utf?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai&rewriteBatchedStatements=true&allowPublicKeyRetrieval=true
+    url: jdbc:mysql://101.132.112.59:3306/utf?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai&rewriteBatchedStatements=true&allowPublicKeyRetrieval=true
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
-    password: 1928374655
+    password: "1823748191_Xry"
 
   jpa:
     hibernate:
@@ -17,11 +17,11 @@ spring:
       max-file-size: 100MB
       max-request-size: 500MB
 
-#  redis:
-#    database: 0
-#    host: localhost
-#    port: 6379
-#    timeout: 1000
+  redis:
+    host: localhost
+    port: 6379
+    #url: redis://1357924680xry@101.132.112.59:6379
+    timeout: 1000
 
 
 mybatis:
