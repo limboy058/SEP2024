@@ -1,0 +1,18 @@
+<view class="container">
+  <button class="back-button" bindtap="onBackButtonTap">返回</button>
+
+  <scroll-view  scroll-y>
+    <block wx:for="{{questions}}" wx:key="id">
+    <view class="ai-response">{{item.answer}}</view>
+    <image class="response-image" src="{{item.image}}" mode="aspectFit"></image>
+  </block>
+  </scroll-view>
+  
+
+  <input class="question-input" placeholder="提问" bindinput="onInput" />
+  
+  <view class="bottom-buttons">
+    <button class="bottom-button1"  bindtap="onTakePhoto">拍照</button>
+    <button class="bottom-button2" bindtap="onSend">发送</button>
+  </view>
+</view>
