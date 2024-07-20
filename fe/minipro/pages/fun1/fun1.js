@@ -57,7 +57,7 @@ Page({
               }
             })
             that.setData({
-              aiResponse: "思考中......请等候约3秒"
+              aiResponse: "思考中......请等候约5秒"
             });
             let user_input=this.data.voiceInput 
             console.log(user_input)

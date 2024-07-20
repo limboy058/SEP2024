@@ -10,7 +10,7 @@
   ],
   "window": {
     "navigationBarTextStyle": "black",
-    "navigationBarBackgroundColor": "#ffffff"
+    "navigationBarBackgroundColor": "#dce5f8"
   },
   "style": "v2",
   "componentFramework": "glass-easel",
