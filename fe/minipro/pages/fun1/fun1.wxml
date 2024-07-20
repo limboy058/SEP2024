@@ -4,12 +4,12 @@
   <text>{{fun_text}}</text>
 </view>
 <view class="ai_response1">
-  <text>{{aiResponse}}</text>
+  <text user-select="true">{{aiResponse}}</text>
 </view>
 <view class="voice-input1">
   <textarea class="weui-textarea" placeholder="输入您的问题（可选）" bindinput="onInputChange" maxlength="200" value="{{voiceInput}}" ></textarea>
 </view>
 <view class="buttons1">
-  <button type="primary" class="button11" bindtap="button1">发送图片并询问</button>
-  <button type="default" class="button21" bindtap="button2">详细询问</button>
+  <button  class="button11" bindtap="button1">发送图片并询问</button>
+  <button  class="button21" bindtap="button2">详细询问</button>
 </view>
