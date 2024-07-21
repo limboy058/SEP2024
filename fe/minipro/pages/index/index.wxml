@@ -8,12 +8,6 @@
 </view>
 
 <view class="fu-bar shadow foot" bindchange_cur="change_cur">
-  <view class="cell" bindtap="navChange" data-cur="show">
-		<view class="image">
-			<image src="/image/ic_nav_main_category{{pageCur == 'show' ? '_press' : ''}}.png"></image>
-		</view>
-    <view class="{{pageCur == 'winter' ? 'text-blue' : 'text-gray'}}">首页</view>
-	</view>
 	<view class="cell" bindtap="navChange" data-cur="fun1">
 		<view class="image">
 			<image src="/image/ic_nav_main_category{{pageCur == 'fun1' ? '_press' : ''}}.png"></image>
@@ -22,16 +16,21 @@
 	</view>
   <view class="cell" bindtap="navChange" data-cur="fun2">
 		<view class="image">
-			<image src="/image/ic_nav_main_category{{pageCur == 'fun2' ? '_press' : ''}}.png"></image>
+			<image src="/image/ic_nav_main_cart{{pageCur == 'fun2' ? '_press' : ''}}.png"></image>
 		</view>
     <view class="{{pageCur == 'summer' ? 'text-blue' : 'text-gray'}}">文字识别</view>
 	</view>
   <view class="cell" bindtap="navChange" data-cur="fun3">
 		<view class="image">
-			<image src="/image/ic_nav_main_category{{pageCur == 'fun3' ? '_press' : ''}}.png"></image>
+			<image src="/image/ic_nav_main_mine{{pageCur == 'fun3' ? '_press' : ''}}.png"></image>
 		</view>
     <view class="{{pageCur == 'fun2' ? 'text-blue' : 'text-gray'}}">人脸识别</view>
 	</view>
-  
+  <view class="cell" bindtap="navChange" data-cur="show">
+		<view class="image">
+			<image src="/image/ic_nav_main_home{{pageCur == 'show' ? '_press' : ''}}.png"></image>
+		</view>
+    <view class="{{pageCur == 'winter' ? 'text-blue' : 'text-gray'}}">自定义</view>
+	</view>
  
 </view>

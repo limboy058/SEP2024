@@ -5,7 +5,14 @@ Page({
    * 页面的初始数据
    */
   data: {
-    fun_text:"Aeye"
+    fun_text:"Aeye\n",
+    tea_text:"\n友情提示：\n",
+    de_text:"   1.本程序主要提供：实景识别，人脸识别，文字识别以及自定义识别。对上传的图片进行基本的描述。\n2.详细询问功能可以对同一张图片做出多次的追问。\n3.在进行人脸识别前，请先上传您熟人的照片，以供比对。\n"
+  },
+  button1: function () {
+    wx.navigateTo({
+      url: '/pages/index/index'
+    })
   },
 
   /**

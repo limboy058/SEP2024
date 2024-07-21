@@ -4,7 +4,7 @@ var moveFlag = true;// 判断执行滑动事件
  
 Page({
   data: {
-    pageCur: 'show',
+    pageCur: 'fun1',
   },
  
   navChange(e) {
