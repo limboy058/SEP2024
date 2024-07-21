@@ -4,7 +4,7 @@
   <spring wx:if="{{pageCur == 'fun1'}}"></spring>
   <summer wx:if="{{pageCur == 'fun2'}}"></summer>
   <autumn id="id_of_fun3" wx:if="{{pageCur == 'fun3'}}"></autumn>
-  <winter wx:if="{{pageCur == 'show'}}"></winter>
+  <winter wx:if="{{pageCur == 'fun4'}}"></winter>
 </view>
 
 <view class="fu-bar shadow foot" bindchange_cur="change_cur">
@@ -26,9 +26,9 @@
 		</view>
     <view class="{{pageCur == 'fun2' ? 'text-blue' : 'text-gray'}}">人脸识别</view>
 	</view>
-  <view class="cell" bindtap="navChange" data-cur="show">
+  <view class="cell" bindtap="navChange" data-cur="fun4">
 		<view class="image">
-			<image src="/image/ic_nav_main_home{{pageCur == 'show' ? '_press' : ''}}.png"></image>
+			<image src="/image/ic_nav_main_home{{pageCur == 'fun4' ? '_press' : ''}}.png"></image>
 		</view>
     <view class="{{pageCur == 'winter' ? 'text-blue' : 'text-gray'}}">自定义</view>
 	</view>

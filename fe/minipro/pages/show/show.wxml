@@ -5,7 +5,7 @@
     <image src="/image/eye.jpg" mode="aspectFill"></image>
   </view>
   <text class="right-align-text">{{tea_text}}</text>
-  <text style="font-size: 20px; font-weight: bold; font-family: 'Montserrat';color: #333; text-align: left;">{{de_text}}</text>
+  <text style="margin: 20rpx; display:block; font-size: 20px; font-weight: bold; font-family: 'Montserrat';color: #333; text-align: left;">{{de_text}}</text>
 
 
 <view class="bottom-buttons">
