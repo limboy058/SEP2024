@@ -6,7 +6,8 @@
     "pages/fun3/fun3",
     "pages/logs/logs",
     "pages/detail/detail",
-    "pages/fun2/fun2"
+    "pages/fun2/fun2",
+    "pages/fun4/fun4"
   ],
   "window": {
     "navigationBarTextStyle": "black",

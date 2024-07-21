@@ -44,7 +44,7 @@ Page({
 
   move2left() {
     console.log("move to left");
-    if (this.data.pageCur=='show')
+    if (this.data.pageCur=='fun4')
     {
       this.setData({pageCur:'fun1'})
     }
@@ -59,7 +59,7 @@ Page({
     }
     else if (this.data.pageCur=='fun3')
     {
-      this.setData({pageCur:'show'})
+      this.setData({pageCur:'fun4'})
     }
 
   },
@@ -67,14 +67,14 @@ Page({
     // 将AI框体中滑动所产生的逻辑写到这里
   move2right() {
     console.log("move to right");
-    if (this.data.pageCur=='show')
+    if (this.data.pageCur=='fun4')
     {
       this.setData({pageCur:'fun3'})
       this.selectComponent("#id_of_fun3").get_all_name()
     }
     else if (this.data.pageCur=='fun1')
     {
-      this.setData({pageCur:'show'})
+      this.setData({pageCur:'fun4'})
     }
     else if (this.data.pageCur=='fun2')
     {
