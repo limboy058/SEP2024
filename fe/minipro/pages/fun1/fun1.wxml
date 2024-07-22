@@ -4,7 +4,7 @@
   <text>{{fun_text}}</text>
 </view>
 <view class="ai_response1">
-  <text user-select="true">{{aiResponse}}</text>
+  <textarea class="ai_res_text1" disabled="true" maxlength="2000" value="{{aiResponse}}" ></textarea>
 </view>
 <view class="voice-input1">
   <textarea class="weui-textarea" placeholder="输入您的问题（可选）" bindinput="onInputChange" maxlength="200" value="{{voiceInput}}" ></textarea>

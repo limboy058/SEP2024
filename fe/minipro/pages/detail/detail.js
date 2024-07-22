@@ -57,6 +57,7 @@ Page({
   },
 
   button1: function () {
+    this.setData({questionInput:''})
     const app = getApp()
     console.log(app.globalData.loginCode)
     const that = this;
@@ -135,12 +136,13 @@ Page({
 
   onSend: function () {
     // 发送逻辑
+    
     const question = this.data.questionInput;
     if(question=='')
     {
       return
     }
-    
+    this.setData({questionInput:''})
     const app = getApp();
     let new_talk_tmp=this.append_msg(question,'','思考中......请等候约1秒');
     let tmp=this.data.fun_id

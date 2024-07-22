@@ -22,7 +22,6 @@
   font-size: 35rpx;
   box-sizing: border-box;
   resize: none;  /* 禁用手动调整大小 */
-  overflow: auto;  /* 启用滚动条 */
 }
 
 .voice-input2 {
