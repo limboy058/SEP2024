@@ -1,0 +1,78 @@
+/* pages/index/index.wxss */
+
+
+.header {
+  text-align: center;
+  font-size: 60rpx;
+  margin-bottom: 20rpx;
+}
+
+.ai_response3 {
+  border: 2px solid #ccc;
+  height: 550rpx;  /* 固定高度 */
+  padding: 20rpx;  /* 调整 padding 以适应新的高度 */
+  margin: 10rpx 0;
+  background-color: #FCF6F5;
+  font-size: 35rpx;
+}
+
+.face_name3 {
+  border: 2px solid #ccc;
+  height: 200rpx;  /* 固定高度 */
+  padding: 20rpx;  /* 调整 padding 以适应新的高度 */
+  margin: 10rpx 0;
+  background-color: #FCF6F5;
+  font-size: 35rpx;
+}
+
+.voice-input3 {
+  border: 2px solid #ccc;
+  height: 150rpx;  /* 固定高度 */
+  margin: 20rpx 10;
+  background-color: #FCF6F5;
+  overflow: hidden;  /* 启用溢出滚动  */
+}
+
+.weui-textarea {
+  width: 100%;
+  height: 100%;  /* 高度占满父容器 */
+  font-size: 35rpx;
+  padding: 10rpx;
+  box-sizing: border-box;
+  resize: none;  /* 禁用手动调整大小 */
+  overflow: auto;  /* 启用滚动条 */
+  
+}
+
+
+.buttons3 {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10rpx;
+  bottom: 20px;
+  justify-content: flex-end;
+}
+
+.button13 {
+  padding: 50rpx 20rpx;
+  font-size: 35rpx;
+  cursor: pointer;
+  background-color: coral;
+  color:#FCF6F5;
+}
+
+.button23 {
+  padding: 50rpx 20rpx;
+  font-size: 35rpx;
+  cursor: pointer;
+  background-color: #FCF6F5;
+  color:coral;
+}
+
+.button33 {
+  padding: 50rpx 20rpx;
+  font-size: 35rpx;
+  cursor: pointer;
+  background-color: #FCF6F5;
+  color:coral;
+}

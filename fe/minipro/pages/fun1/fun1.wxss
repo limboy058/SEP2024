@@ -1,4 +1,4 @@
-/* pages/fun1/fun1.wxss */
+/* pages/index/index.wxss */
 
 
 .header {
@@ -7,20 +7,23 @@
   margin-bottom: 20rpx;
 }
 
-.ai-response {
-  border: 2px solid #000;
-  height: 900rpx;  /* 固定高度 */
+.ai_response1 {
+  border: 2px solid #ccc;
+  height: 760rpx;  /* 固定高度 */
   padding: 20rpx;  /* 调整 padding 以适应新的高度 */
   margin: 10rpx 0;
-  text-align: center;
-  font-size: 30rpx;
+  background-color: #FCF6F5;
+  font-size: 35rpx;
+  
 }
 
-.voice-input {
-  border: 2px solid #000;
+
+
+.voice-input1 {
+  border: 2px solid #ccc;
   height: 200rpx;  /* 固定高度 */
   margin: 10rpx 10;
-  text-align: center;
+  background-color: #FCF6F5;
   overflow: hidden;  /* 启用溢出滚动 */
 }
 
@@ -36,20 +39,28 @@
 }
 
 
-.buttons {
+.buttons1 {
   display: flex;
-  justify-content: space-around;
-  margin-top: 10rpx;
+  justify-content: space-between;
+  margin-top: 20rpx;
+  bottom: 20px;
+  justify-content: flex-end;
 }
 
-.button1 {
+.button11 {
   padding: 50rpx 20rpx;
   font-size: 40rpx;
+  background-color: coral;
+  color:#FCF6F5;
+  bottom: 15rpx;
   cursor: pointer;
 }
 
-.button2 {
+.button21 {
   padding: 50rpx 20rpx;
   font-size: 40rpx;
+  background-color: #FCF6F5;
+  color:coral;
+  bottom: 15rpx;
   cursor: pointer;
 }

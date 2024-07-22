@@ -1,0 +1,13 @@
+<view class="header">
+  <text style="font-size: 50px; font-weight: bold; font-family: 'Montserrat';color: #333; text-align: center;">{{fun_text}}</text>
+</view>
+  <!-- <view class="image-container">
+    <image src="/image/eye.jpg" mode="aspectFill"></image>
+  </view> -->
+  <text class="right-align-text">{{tea_text}}</text>
+  <text style="margin: 50rpx; display:block; font-size: 18px; font-weight: bold; font-family: 'Montserrat';color: #333; text-align: left;">{{de_text}}</text>
+
+
+<view class="bottom-buttons">
+    <button class="bottom-button1" bindtap="button1">进入</button>
+</view>

@@ -8,17 +8,10 @@
   padding: 20px;
 }
 
-.back-button {
-  background-color: #007aff;
-  color: white;
-  width:45%;
-  float: left;
-  align-self: flex-start;
-  margin-bottom: 20px;
-}
+
 
 scroll-view {
-  height: 70vh;
+  height: 80vh;
   width: 100%;
   margin-bottom: 15vh;
   padding: 0 0;
@@ -27,48 +20,57 @@ scroll-view {
 .response-image {
   width: 100%;
   height: 200px;
-  background-color: #ddd;
+  background-color: #FCF6F5;
   margin-bottom: 20px;
 }
 
-.ai-response {
-  width: 100%;
+.user-que {
+  width: 98%;
   padding: 10px;
-  background-color: #f0f0f0;
+  background-color: #FCF6F5;
+  margin-bottom: 10px;
+}
+
+.ai-response {
+  width: 98%;
+  padding: 10px;
+  background-color: rgb(255, 172, 142);
   margin-bottom: 10px;
 }
 
 .question-input {
   width: 90%;
-  padding: 10px;
+  padding: 15px;
   position: fixed;
-  bottom: 50px;
-  border: 1px solid #ccc;
+  bottom: 125rpx;
+  background-color: #FCF6F5;
+  border: 2px solid #ccc;
   margin-bottom: 20px;
+  word-break: break-all;
 }
 
 .bottom-buttons {
   display: flex;
   position: fixed;
-  bottom: 10px;
+  bottom: 55rpx;
   justify-content: flex-end;
   width: 100%;
   margin-top: 20px;
 }
 
 .bottom-button1 {
-  padding: 10px 20px;
-  background-color: #007aff;
-  color: white;
+  padding: 15px 20px;
+  background-color: #FCF6F5;
+  color:coral;
   width:45% !important;
   float: left;
-  border-radius: 5px;
+  border-radius: 10px;
 }
 .bottom-button2 {
-  padding: 10px 20px;
-  background-color: #007aff;
-  color: white;
+  background-color: coral;
+  color:#FCF6F5;
+  padding: 15px 20px;
   width:45% !important;
   float: right;
-  border-radius: 5px;
+  border-radius: 10px;
 }
