@@ -7,14 +7,16 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="FoodieLion" />
         <module name="utfproject" />
         <module name="foodie-lion" />
+        <module name="FoodieLion" />
+        <module name="AEye" />
       </profile>
     </annotationProcessing>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="AEye" options="-parameters" />
       <module name="FoodieLion" options="-parameters" />
       <module name="foodie-lion" options="-parameters" />
       <module name="utfproject" options="-parameters" />
