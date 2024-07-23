@@ -19,11 +19,11 @@ import java.io.IOException;
 public class wechatLoginUtil {
     public String checkOpenId(String code) throws IOException {
         String url = "https://api.weixin.qq.com/sns/jscode2session";
-        url += "?appid=wx4f57ddf63b0860d7";//自己的appid
-        url += "&secret=8b59dbc85b2dbac18337467ae77769b9";//自己的appSecret
-        url += "&js_code=" + code;
-        url += "&grant_type=authorization_code";
-        url += "&connect_redirect=1";
+//        url += "?appid=wx4f57ddf63b0860d7";//自己的appid
+//        url += "&secret=8b59dbc85b2dbac18337467ae77769b9";//自己的appSecret
+//        url += "&js_code=" + code;
+//        url += "&grant_type=authorization_code";
+//        url += "&connect_redirect=1";
         String res = null;
         CloseableHttpClient httpClient = HttpClientBuilder.create().build();
         // DefaultHttpClient()
