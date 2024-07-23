@@ -114,7 +114,9 @@ public class UserController {
         totJson.addProperty("type","talk");
         String requestBody =gson.toJson(totJson);
 
-
+        if(Boolean.TRUE.equals(redisTemplate3.opsForValue().getOperations().hasKey(openId))){
+            redisTemplate3.delete(openId);
+        }
         redisTemplate2.opsForValue().set(openId,requestBody);
 
         int wait_cnt=30*10;
@@ -166,6 +168,9 @@ public class UserController {
         totJson.addProperty("url",path);
         totJson.addProperty("name",new_name);
         String requestBody =gson.toJson(totJson);
+        if(Boolean.TRUE.equals(redisTemplate3.opsForValue().getOperations().hasKey(openId))){
+            redisTemplate3.delete(openId);
+        }
         redisTemplate2.opsForValue().set(openId,requestBody);
         int wait_cnt=30*10;
         while(wait_cnt>0&& Boolean.FALSE.equals(redisTemplate3.opsForValue().getOperations().hasKey(openId))){
@@ -210,6 +215,9 @@ public class UserController {
         totJson.addProperty("type","faceDetect");
         totJson.addProperty("url",path);
         String requestBody =gson.toJson(totJson);
+        if(Boolean.TRUE.equals(redisTemplate3.opsForValue().getOperations().hasKey(openId))){
+            redisTemplate3.delete(openId);
+        }
         redisTemplate2.opsForValue().set(openId,requestBody);
         int wait_cnt=30*10;
         while(wait_cnt>0&& Boolean.FALSE.equals(redisTemplate3.opsForValue().getOperations().hasKey(openId))){
@@ -248,6 +256,9 @@ public class UserController {
         totJson.addProperty("type","delete");
         totJson.addProperty("name",name);
         String requestBody =gson.toJson(totJson);
+        if(Boolean.TRUE.equals(redisTemplate3.opsForValue().getOperations().hasKey(openId))){
+            redisTemplate3.delete(openId);
+        }
         redisTemplate2.opsForValue().set(openId,requestBody);
         int wait_cnt=30*10;
         while(wait_cnt>0&& Boolean.FALSE.equals(redisTemplate3.opsForValue().getOperations().hasKey(openId))){
