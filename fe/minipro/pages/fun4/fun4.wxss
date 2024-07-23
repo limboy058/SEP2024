@@ -7,32 +7,39 @@
   margin-bottom: 20rpx;
 }
 
-.ai_response1 {
+.ai_response4 {
   border: 2px solid #ccc;
-  height: 760rpx;  /* 固定高度 */
+  height: 560rpx;  /* 固定高度 */
   padding: 20rpx;  /* 调整 padding 以适应新的高度 */
   margin: 10rpx 0;
   background-color: #FCF6F5;
   font-size: 35rpx;
 }
 
-.ai_res_text1{
+.ai_res_text{
   width: 100%;
   height: 100%;  /* 高度占满父容器 */
   font-size: 35rpx;
   box-sizing: border-box;
   resize: none;  /* 禁用手动调整大小 */
-  
 }
 
-
-
-.voice-input1 {
+.user-prompt {
   border: 2px solid #ccc;
   height: 200rpx;  /* 固定高度 */
   margin: 10rpx 10;
   background-color: #FCF6F5;
   overflow: hidden;  /* 启用溢出滚动 */
+}
+
+.textarea-prompt{
+  width: 100%;
+  height: 100%;  /* 高度占满父容器 */
+  font-size: 35rpx;
+  padding: 10rpx;
+  box-sizing: border-box;
+  resize: none;  /* 禁用手动调整大小 */
+  overflow: auto;  /* 启用滚动条 */
 }
 
 .weui-textarea {
@@ -46,8 +53,15 @@
   
 }
 
+.voice-input4 {
+  border: 2px solid #ccc;
+  height: 200rpx;  /* 固定高度 */
+  margin: 10rpx 10;
+  background-color: #FCF6F5;
+  overflow: hidden;  /* 启用溢出滚动 */
+}
 
-.buttons1 {
+.buttons4 {
   display: flex;
   justify-content: space-between;
   margin-top: 20rpx;
@@ -55,20 +69,20 @@
   justify-content: flex-end;
 }
 
-.button11 {
+.button14 {
   padding: 50rpx 20rpx;
   font-size: 40rpx;
+  bottom: 15rpx;
+  cursor: pointer;
   background-color: coral;
   color:#FCF6F5;
-  bottom: 15rpx;
-  cursor: pointer;
 }
 
-.button21 {
+.button24 {
   padding: 50rpx 20rpx;
   font-size: 40rpx;
-  background-color: #FCF6F5;
-  color:coral;
   bottom: 15rpx;
   cursor: pointer;
+  background-color: #FCF6F5;
+  color:coral;
 }

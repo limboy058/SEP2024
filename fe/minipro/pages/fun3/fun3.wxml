@@ -5,7 +5,7 @@
 </view>
 
 <view class="ai_response3">
-  <text>{{aiResponse}}</text>
+  <text user-select="true">{{aiResponse}}</text>
 </view>
 
 <view class="face_name3">
@@ -17,7 +17,7 @@
 </view>
 
 <view class="buttons3">
-  <button type="primary" class="button13" bindtap="button1">拍照询问</button>
-  <button type="default" class="button23" bindtap="button2">上传相关人脸</button>
-  <button type="default" class="button33" bindtap="button3">删除相关人脸</button>
+  <button class="button13" bindtap="button1">拍照询问</button>
+  <button class="button23" bindtap="button2">上传相关人脸</button>
+  <button class="button33" bindtap="button3">删除相关人脸</button>
 </view>

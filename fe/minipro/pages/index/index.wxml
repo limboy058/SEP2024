@@ -4,34 +4,34 @@
   <spring wx:if="{{pageCur == 'fun1'}}"></spring>
   <summer wx:if="{{pageCur == 'fun2'}}"></summer>
   <autumn id="id_of_fun3" wx:if="{{pageCur == 'fun3'}}"></autumn>
-  <winter wx:if="{{pageCur == 'show'}}"></winter>
+  <winter wx:if="{{pageCur == 'fun4'}}"></winter>
 </view>
 
 <view class="fu-bar shadow foot" bindchange_cur="change_cur">
-  <view class="cell" bindtap="navChange" data-cur="show">
-		<view class="image">
-			<image src="/image/ic_nav_main_category{{pageCur == 'show' ? '_press' : ''}}.png"></image>
-		</view>
-    <view class="{{pageCur == 'winter' ? 'text-blue' : 'text-gray'}}">首页</view>
-	</view>
 	<view class="cell" bindtap="navChange" data-cur="fun1">
-		<view class="image">
-			<image src="/image/ic_nav_main_category{{pageCur == 'fun1' ? '_press' : ''}}.png"></image>
-		</view>
     <view class="{{pageCur == 'fun1' ? 'text-blue' : 'text-gray'}}">实景识别</view>
+		<view class="image">
+			<image src="/image/1{{pageCur == 'fun1' ? '_1' : '_0'}}.png"></image>
+		</view>
 	</view>
   <view class="cell" bindtap="navChange" data-cur="fun2">
+    <view class="{{pageCur == 'fun2' ? 'text-blue' : 'text-gray'}}">文字识别</view>
 		<view class="image">
-			<image src="/image/ic_nav_main_category{{pageCur == 'fun2' ? '_press' : ''}}.png"></image>
+			<image src="/image/2{{pageCur == 'fun2' ? '_1' : '_0'}}.png"></image>
 		</view>
-    <view class="{{pageCur == 'summer' ? 'text-blue' : 'text-gray'}}">文字识别</view>
 	</view>
   <view class="cell" bindtap="navChange" data-cur="fun3">
+    <view class="{{pageCur == 'fun3' ? 'text-blue' : 'text-gray'}}">人脸识别</view>
 		<view class="image">
-			<image src="/image/ic_nav_main_category{{pageCur == 'fun3' ? '_press' : ''}}.png"></image>
+			<image src="/image/3{{pageCur == 'fun3' ? '_1' : '_0'}}.png"></image>
 		</view>
-    <view class="{{pageCur == 'fun2' ? 'text-blue' : 'text-gray'}}">人脸识别</view>
+    
 	</view>
-  
+  <view class="cell" bindtap="navChange" data-cur="fun4">
+    <view class="{{pageCur == 'fun4' ? 'text-blue' : 'text-gray'}}">自定义</view>
+		<view class="image">
+			<image src="/image/4{{pageCur == 'fun4' ? '_1' : '_0'}}.png"></image>
+		</view>
+	</view>
  
 </view>

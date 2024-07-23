@@ -23,14 +23,19 @@ Page({
     aiResponse: '提交后，此处将显示AI回复',
     voiceInput: '',
     send_to_detail:'',
-    fun_text:'实景识别',
-    fun_id:'1',
-    pic_path: ''
+    fun_text:'自定义提示词',
+    fun_id:'',
+    pic_path: '',
+    user_prompt:''
   },
-
 
   // Function to handle "拍照" button click
   button1: function () {
+    if(this.data.user_prompt=='')
+    {
+      this.setData({aiResponse:'请输入提示词'})
+      return
+    }
     const app = getApp()
     console.log(app.globalData.loginCode)
     const that = this;
@@ -60,8 +65,8 @@ Page({
               aiResponse: "思考中......请等候约5秒"
             });
             let user_input=this.data.voiceInput 
+            console.log(this.data.user_prompt )
             console.log(user_input)
-    
             wx.uploadFile({
               url: 'http://101.132.112.59:8123/AITalk', 
               filePath: my_path,
@@ -70,7 +75,7 @@ Page({
               formData: {
                 loginCode: app.globalData.loginCode,
                 newTalk: '1', // 或者 false，根据实际情况设置
-                kind: this.data.fun_id,
+                kind: this.data.user_prompt,
                 //question:replaceNewlines(user_input)
                 question:user_input
               },
@@ -113,9 +118,14 @@ Page({
 
   // Function to handle "详细询问" button click
   button2: function () {
+    if(this.data.user_prompt=='')
+    {
+      this.setData({aiResponse:'请输入提示词'})
+      return
+    }
     if(this.data.pic_path!=''){
       wx.navigateTo({
-        url: '/pages/detail/detail?pic_path='+this.data.pic_path+'&que='+this.data.send_to_detail+'&ai_res='+this.data.aiResponse+'&fun_id='+this.data.fun_id  // 指定目标页面路径
+        url: '/pages/detail/detail?pic_path='+this.data.pic_path+'&que='+this.data.send_to_detail+'&ai_res='+this.data.aiResponse+'&fun_id='+this.data.fun_id+'&user_prompt_tmp='+this.data.user_prompt  // 指定目标页面路径
       });
     }
     else{
@@ -123,7 +133,7 @@ Page({
         send_to_detail: ''
       });
       wx.navigateTo({
-        url: '/pages/detail/detail?pic_path='+this.data.pic_path+'&que='+this.data.voiceInput+'&ai_res='+this.data.aiResponse+'&fun_id='+this.data.fun_id // 指定目标页面路径
+        url: '/pages/detail/detail?pic_path='+this.data.pic_path+'&que='+this.data.voiceInput+'&ai_res='+this.data.aiResponse+'&fun_id='+this.data.fun_id+'&user_prompt_tmp='+this.data.user_prompt // 指定目标页面路径
       });
     }
     
@@ -144,18 +154,15 @@ Page({
       voiceInput: e.detail.value
     });
   },
- 
-  //what is it???
-//   clicktab1:function(e){
-//     this.move2right();
-//    this.setData({
-//      currentab:0
-//    })
-// console.log('详情')
-//   },
+
+  promptChange: function (e) {
+    this.setData({
+      user_prompt: e.detail.value
+    });
+  },
 
 
- 
+
   /**
    * 生命周期函数--监听页面加载
    */

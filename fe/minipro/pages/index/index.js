@@ -4,7 +4,7 @@ var moveFlag = true;// 判断执行滑动事件
  
 Page({
   data: {
-    pageCur: 'show',
+    pageCur: 'fun1',
   },
  
   navChange(e) {
@@ -27,11 +27,11 @@ Page({
     endX = e.touches[0].pageX; // 获取触摸时的原点
     endY = e.touches[0].pageY;
     if (moveFlag) {
-      if (endX - startX > 70 && Math.abs((endY-startY)/(endX-startX))<1 ) {
+      if (endX - startX > 70 && Math.abs((endY-startY)/(endX-startX))<0.4 ) {
         this.move2right();
         moveFlag = false;
       }
-      if (startX - endX > 70  && Math.abs((endY-startY)/(endX-startX))<1) {
+      if (startX - endX > 70  && Math.abs((endY-startY)/(endX-startX))<0.4) {
         this.move2left();
         moveFlag = false;
       }
@@ -44,7 +44,7 @@ Page({
 
   move2left() {
     console.log("move to left");
-    if (this.data.pageCur=='show')
+    if (this.data.pageCur=='fun4')
     {
       this.setData({pageCur:'fun1'})
     }
@@ -59,7 +59,7 @@ Page({
     }
     else if (this.data.pageCur=='fun3')
     {
-      this.setData({pageCur:'show'})
+      this.setData({pageCur:'fun4'})
     }
 
   },
@@ -67,14 +67,14 @@ Page({
     // 将AI框体中滑动所产生的逻辑写到这里
   move2right() {
     console.log("move to right");
-    if (this.data.pageCur=='show')
+    if (this.data.pageCur=='fun4')
     {
       this.setData({pageCur:'fun3'})
       this.selectComponent("#id_of_fun3").get_all_name()
     }
     else if (this.data.pageCur=='fun1')
     {
-      this.setData({pageCur:'show'})
+      this.setData({pageCur:'fun4'})
     }
     else if (this.data.pageCur=='fun2')
     {
