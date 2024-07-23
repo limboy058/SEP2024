@@ -386,7 +386,9 @@ public class UserController {
         totJson.addProperty("type","talk");
         String requestBody =gson.toJson(totJson);
         String openId="114514";
-
+        if(Boolean.TRUE.equals(redisTemplate3.opsForValue().getOperations().hasKey(openId))){
+            redisTemplate3.delete(openId);
+        }
         redisTemplate2.opsForValue().set(openId,requestBody);
 
         int wait_cnt=30*10;

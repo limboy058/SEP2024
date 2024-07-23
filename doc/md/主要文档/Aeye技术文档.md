@@ -126,9 +126,37 @@ python版本：3.11.2
 
 ## 4. 后端
 
+####  技术栈
+
+使用springboot框架搭建后端
+
+使用mybatisORM框架与mysql交互
+
+使用redis作为缓存
+
+部署在华为云（后改为阿里云）服务器
+
+使用nginx提供外部网络访问服务
+
+使用swagger-ui为前端提供接口说明文档
+
+在测试接口过程中使用Postman进行测试
+
+#### 软件支持
+
+java 1.80
+
+mybatis 2.11
+
+mysql 8.0
+
+redis 4.0.8
 
 
 
+#### 访问流程
+
+<img src="Aeye技术文档.assets/AIbe.png" alt="process" />
 
 
 
@@ -152,7 +180,7 @@ python版本：3.11.2
 
 ### 5.3 redis数据访问
 
-
+使用轮询+消息队列机制实现内网计算服务器与外网后端服务器间的通信。
 
 
 
