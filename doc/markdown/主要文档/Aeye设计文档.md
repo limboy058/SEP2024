@@ -144,7 +144,23 @@ Aeye系统架构有前端应用（或IoT设备）、后端服务（包括数据�
 
 #### 5.2 数据库设计
 
-//todo
+#### 缓存数据库
+
+使用redis存储具有时效性且请求频繁的数据，包括用户对话历史与消息队列。
+
+#### 关系数据库
+
+使用mysql存储需持久化保存的数据，包括用户openId-loginCode信息，用户联系人列表及其人脸信息等。
+
+使用E-R图梳理对象关系，进行数据存储：
+
+![E-R](Aeye设计文档.assets/E-R.png)
+
+最终mysql表结构如下：
+
+User：openId（主键），loginCode，min_cnt
+
+user_img：openId，name，path，其中openId+name作为联合主键
 
 
 
