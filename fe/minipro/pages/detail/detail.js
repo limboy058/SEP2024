@@ -13,21 +13,30 @@ Page({
     let currentData = this.data.questions; // 获取当前的对话数据
     let newMessage = { id: currentData[currentData.length-1].id+1, que:q,image: p ,answer: r};
     let new_talk = '0'
-    if (currentData[currentData.length-1].answer=='提交后，此处将显示AI回复' ||currentData[currentData.length-1].answer=='未上传图片')
+    if (currentData[currentData.length-1].answer=='Aeye：\n提交后，此处将显示AI回复' ||currentData[currentData.length-1].answer=='Aeye：\n未上传图片')
     {
       new_talk='1'
     }
+    if (newMessage.que!='')
+    {
+      newMessage.que='用户：\n'+newMessage.que
+    }
+    newMessage.answer='Aeye：\n'+newMessage.answer
     currentData.push(newMessage);
     this.setData({
       questions: currentData,
-
     });
     return new_talk
   },
 
   set_last_msg: function (q,p,r) {
     let currentData = this.data.questions; // 获取当前的对话数据
-    currentData[currentData.length-1] = { id: currentData[currentData.length-1].id, que:q, image: p ,answer: r};
+    if (q!='')
+    {
+      currentData[currentData.length-1].que='用户：\n'+q
+    }
+    currentData[currentData.length-1].answer='Aeye：\n'+r
+    currentData[currentData.length-1].image=p
     this.setData({
       questions: currentData
     });
@@ -48,8 +57,15 @@ Page({
         let newMessage = { id: 0, que:'',image: '' ,answer: '自定义提示词:'+user_prompt_tmp};
         currentData.push(newMessage);
       }
-      
-      let newMessage = { id: 1, que:que,image: pic_path ,answer: ai_res};
+      let newMessage
+      if(que!='')
+      {
+        newMessage = { id: 1, que:'用户：\n'+que,image: pic_path ,answer: 'Aeye：\n'+ai_res};
+      }
+      else
+      {
+        newMessage = { id: 1, que:que,image: pic_path ,answer: 'Aeye：\n'+ai_res};
+      }
       currentData.push(newMessage);
       this.setData({
         questions: currentData
@@ -57,6 +73,7 @@ Page({
   },
 
   button1: function () {
+    let user_input=this.data.questionInput
     this.setData({questionInput:''})
     const app = getApp()
     console.log(app.globalData.loginCode)
@@ -79,7 +96,7 @@ Page({
                 console.log(res.height)
               }
             })
-            let user_input=this.data.questionInput
+            
 
             let new_talk_tmp=this.append_msg(user_input,my_path,'思考中......请等候约3秒') 
             let tmp=this.data.fun_id
@@ -180,10 +197,7 @@ Page({
           //   title: '发送成功',
           //   icon: 'success'
           // });
-          this.set_last_msg(question,'',res.data) 
-          this.setData({
-            questionInput: ''
-          });
+          this.set_last_msg(question,'',res.data)
         }
         else{
           this.set_last_msg(question,'','网络连接异常') 

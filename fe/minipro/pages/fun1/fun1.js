@@ -25,11 +25,23 @@ Page({
     send_to_detail:'',
     fun_text:'实景识别',
     fun_id:'1',
-    pic_path: ''
+    pic_path: '',
+
   },
 
 
-  // Function to handle "拍照" button click
+ /**
+ * 处理 'button1' 点击事件的函数。
+ * 此函数执行以下操作：
+ * 1. 从应用的全局数据中获取全局登录码。
+ * 2. 允许用户从设备中选择一个媒体文件（图片）。
+ * 3. 压缩所选图片。
+ * 4. 使用压缩图片的路径更新组件的数据。
+ * 5. 获取并记录图片的信息（宽度和高度）。
+ * 6. 向用户显示一个临时消息，指示处理过程。
+ * 7. 将压缩图片和用户输入上传到服务器，fun_id为1表示实景识别
+ * 8. 处理服务器响应，使用AI响应或错误信息更新组件的数据。
+ */
   button1: function () {
     const app = getApp()
     console.log(app.globalData.loginCode)
@@ -111,7 +123,8 @@ Page({
     });
   },
 
-  // Function to handle "详细询问" button click
+  // 跳转详细询问页面
+  // 附加了一段历史对话
   button2: function () {
     if(this.data.pic_path!=''){
       wx.navigateTo({
@@ -145,16 +158,6 @@ Page({
     });
   },
  
-  //what is it???
-//   clicktab1:function(e){
-//     this.move2right();
-//    this.setData({
-//      currentab:0
-//    })
-// console.log('详情')
-//   },
-
-
  
   /**
    * 生命周期函数--监听页面加载

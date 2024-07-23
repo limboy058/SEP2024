@@ -91,7 +91,7 @@ Aeye系统架构有前端应用（或IoT设备）、后端服务（包括数据�
 
 #### 4.3 数据流图
 
-<img src="D:\EgdeDownload\数据流.png" alt="数据流" style="zoom: 80%;" />
+<img src="Aeye设计文档.assets/数据流-1721707795696-1.png" alt="数据流" style="zoom: 80%;" />
 
 
 

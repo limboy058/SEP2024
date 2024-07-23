@@ -2,7 +2,7 @@
 
 .fu-bar {
   display: flex;
-  min-height: 160rpx;
+  min-height: 140rpx;
   justify-content: space-between;
   align-items: center;
 }
