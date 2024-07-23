@@ -2,7 +2,7 @@
 
 .fu-bar {
   display: flex;
-  min-height: 150rpx;
+  min-height: 140rpx;
   justify-content: space-between;
   align-items: center;
 }
@@ -22,7 +22,7 @@
   display: flex;
   flex-direction: column;
   max-width: 100%;
-  height: 100rpx;
+  height: 120rpx;
   flex: 1;
 }
  
@@ -35,8 +35,10 @@
   width: 70rpx;
   height: 70rpx;
 }
- 
+
 .fu-bar .cell view[class*="text-"] {
   text-align: center;
-  font-size: 25rpx;
+  font-size: 30rpx;
+  margin-bottom: 5px;
+  margin-top: 0px;
 }

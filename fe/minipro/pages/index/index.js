@@ -27,11 +27,11 @@ Page({
     endX = e.touches[0].pageX; // 获取触摸时的原点
     endY = e.touches[0].pageY;
     if (moveFlag) {
-      if (endX - startX > 70 && Math.abs((endY-startY)/(endX-startX))<1 ) {
+      if (endX - startX > 70 && Math.abs((endY-startY)/(endX-startX))<0.4 ) {
         this.move2right();
         moveFlag = false;
       }
-      if (startX - endX > 70  && Math.abs((endY-startY)/(endX-startX))<1) {
+      if (startX - endX > 70  && Math.abs((endY-startY)/(endX-startX))<0.4) {
         this.move2left();
         moveFlag = false;
       }
