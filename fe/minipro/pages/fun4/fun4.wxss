@@ -9,7 +9,7 @@
 
 .ai_response4 {
   border: 2px solid #ccc;
-  height: 560rpx;  /* 固定高度 */
+  height: 450rpx;  /* 固定高度 */
   padding: 20rpx;  /* 调整 padding 以适应新的高度 */
   margin: 10rpx 0;
   background-color: #FCF6F5;
@@ -26,7 +26,7 @@
 
 .user-prompt {
   border: 2px solid #ccc;
-  height: 200rpx;  /* 固定高度 */
+  height: 160rpx;  /* 固定高度 */
   margin: 10rpx 10;
   background-color: #FCF6F5;
   overflow: hidden;  /* 启用溢出滚动 */
@@ -55,7 +55,7 @@
 
 .voice-input4 {
   border: 2px solid #ccc;
-  height: 200rpx;  /* 固定高度 */
+  height: 170rpx;  /* 固定高度 */
   margin: 10rpx 10;
   background-color: #FCF6F5;
   overflow: hidden;  /* 启用溢出滚动 */

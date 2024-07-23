@@ -12,6 +12,7 @@
   <text>{{all_face_name}}</text>
 </view>
 
+<text style="margin: 10rpx; display:block; font-size: 18px; text-align: left;">在下方输入修改的人脸名称</text>
 <view class="voice-input3">
   <textarea class="weui-textarea" placeholder="输入修改的人脸名称" bindinput="onInputChange" maxlength="200" value="{{voiceInput}}" ></textarea>
 </view>
