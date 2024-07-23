@@ -1,20 +1,4 @@
 
-function replaceNewlines(input) {
-  let result = '';
-  for (let i = 0; i < input.length; i++) {
-      if (input[i] === '\n') {
-          result += '\\n';
-      } else if (input[i] === '\\') {
-          result += '\\\\';
-          //i++; // Skip the 'n' after the backslash
-      } else {
-          result += input[i];
-      }
-  }
-  return result;
-}
-
-
 Page({
   /**
    * 页面的初始数据
@@ -27,6 +11,16 @@ Page({
     all_face_name:''
   },
 
+  
+/**
+ * 获取所有已上传的人脸信息。
+ * 此函数通过向服务器发送请求，获取用户已上传的所有人脸信息。
+ * 
+ * 主要步骤：
+ * 1. 获取应用的全局数据（loginCode）。
+ * 2. 发送HTTP POST请求到后端接口，携带loginCode作为表单数据。
+ * 3. 处理服务器的响应，成功时将人脸信息显示在界面上，失败时显示错误信息。
+ */
   get_all_name:function(){
     var app = getApp()
     wx.request({

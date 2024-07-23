@@ -6,7 +6,7 @@
         <image class="response-image" src="{{item.image}}" mode="aspectFit"></image>
       </view>
       <view wx:if="{{item.que}}"> 
-        <view class="user-que" user-select="true">{{item.que}}</view>
+        <view class="user-que" user-select="true" style="white-space:pre-wrap" >{{item.que}}</view>
       </view>
       <view class="ai-response" user-select="true" style="white-space:pre-wrap" >{{item.answer}}</view>
   </block>
