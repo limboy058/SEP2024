@@ -1,6 +1,6 @@
 ## Aeye——面向视障人群的基于大语言模型的智能视觉辅助
 
-
+[limboy058/SEP2024 (github.com)](https://github.com/limboy058/SEP2024)
 
 **/fe**   为前端代码，包含微信小程序、Hololens、树莓派
 
